@@ -1,0 +1,2762 @@
+# MASTER DEVELOPMENT PROMPT
+# Courier & Logistics Management Software – Complete ERP
+
+## 1. PROJECT OVERVIEW
+
+Act as a senior software architect, Laravel developer, database architect, UI/UX designer, QA engineer, and logistics domain expert.
+
+Build a complete, production-ready, enterprise-grade **Courier & Logistics Management System** using Laravel, PHP, and MySQL.
+
+The software must support the complete operational lifecycle of courier and logistics businesses, including:
+
+- Local courier services
+- Domestic courier services
+- International courier services
+- Express and standard delivery
+- Same-day and next-day delivery
+- E-commerce shipping
+- B2B and B2C logistics
+- Third-party logistics (3PL)
+- Full truckload (FTL) and less-than-truckload (LTL) logistics
+- Franchise-based courier networks
+- Warehouse and distribution operations
+- Reverse logistics and return-to-origin (RTO)
+- Cash on Delivery (COD)
+- Corporate and bulk shipping accounts
+
+This must be a functional business application, not just a dashboard or UI prototype.
+
+Every module must have working CRUD operations, validation, database relationships, business logic, role-based access, filters, reports, and operational workflows.
+
+Build the software with a modular architecture so that individual modules can be maintained, extended, and upgraded independently.
+
+The system must support multiple companies, branches, hubs, warehouses, franchise locations, employees, delivery agents, and customers.
+
+---
+
+## 2. TECHNOLOGY STACK
+
+Use the following technologies:
+
+### Backend
+- PHP 8.3+
+- Latest stable Laravel version compatible with the deployment environment
+- MySQL 8+
+- Laravel Eloquent ORM
+- Laravel migrations and seeders
+- Laravel queues and scheduled tasks
+- Laravel events and listeners
+- Laravel notifications
+- Laravel policies and middleware
+- Laravel API resources
+- REST API architecture
+
+### Frontend
+- Laravel Blade
+- Livewire
+- Tailwind CSS
+- Alpine.js
+- Chart.js
+- Responsive layouts
+- AJAX where appropriate
+
+### Supporting Technologies
+- Redis for cache and queues (optional)
+- Laravel Sanctum for API authentication
+- Laravel Storage for documents and images
+- PDF generation for labels, invoices, manifests, and reports
+- Excel/CSV import and export
+- Barcode and QR code generation
+- Google Maps or another configured mapping provider
+- SMTP email integration
+- Configurable SMS gateway
+- WhatsApp Business API integration where credentials and provider access are available
+
+Do not hardcode third-party API credentials. All integrations must be configurable from the administration panel or secure environment configuration.
+
+---
+
+# 3. SYSTEM ARCHITECTURE
+
+Build a modular, multi-company, multi-branch system.
+
+### Organizational hierarchy
+
+Company
+→ Regional Office
+→ Branch
+→ Hub / Sorting Centre
+→ Warehouse
+→ Delivery Zone
+→ Delivery Agent
+
+Support multiple operational structures. Not every company will require all levels.
+
+### Multi-company capabilities
+
+Each company must have:
+
+- Independent company profile
+- Company logo and branding
+- GST and business details
+- Branches and operational locations
+- Employees and permissions
+- Customers and merchants
+- Shipment records
+- Pricing configurations
+- Financial accounts
+- Reports and dashboards
+- Custom shipment prefixes and tracking configurations
+
+Implement tenant isolation correctly. A company must never access another company's private operational or financial records unless explicitly authorized through a super-admin or approved partner relationship.
+
+### User roles
+
+Create a flexible Role-Based Access Control (RBAC) system.
+
+Default roles:
+
+1. Super Administrator
+2. Company Administrator
+3. Operations Manager
+4. Branch Manager
+5. Hub Manager
+6. Booking Executive
+7. Customer Support Executive
+8. Pickup Executive
+9. Sorting Operator
+10. Dispatch Manager
+11. Delivery Agent
+12. Warehouse Manager
+13. Finance Manager
+14. Accountant
+15. Sales Executive
+16. Franchise Owner
+17. Corporate Customer
+18. Merchant / E-commerce Customer
+19. Regular Customer
+20. Auditor / Read-only User
+
+Allow administrators to create custom roles and assign permissions at module, page, and action level.
+
+Permissions must support:
+
+- View
+- Create
+- Edit
+- Delete
+- Approve
+- Assign
+- Cancel
+- Export
+- Print
+- Financial access
+- Branch-specific access
+- Company-wide access
+
+---
+
+# 4. MASTER DASHBOARD
+
+Create an intelligent, role-based dashboard.
+
+### Main KPI cards
+
+- Total Shipments
+- Today's Bookings
+- Shipments Awaiting Pickup
+- Pickups Completed
+- In Transit
+- At Sorting Hub
+- Out for Delivery
+- Successfully Delivered
+- Delivery Failed
+- Pending Reattempts
+- RTO Shipments
+- Cancelled Shipments
+- COD Pending
+- COD Collected
+- COD Settlement Pending
+- Total Revenue
+- Outstanding Customer Payments
+- Total Delivery Agents
+- Active Vehicles
+- Delayed Shipments
+
+### Dashboard charts
+
+- Daily shipment bookings
+- Monthly shipment volume
+- Shipment status distribution
+- Delivery success versus failure
+- Branch-wise shipment performance
+- Hub-wise shipment volume
+- Revenue trends
+- COD collection trends
+- Delivery agent performance
+- Service-type distribution
+- RTO percentage
+- Average delivery time
+
+### Dashboard filters
+
+- Date range
+- Company
+- Branch
+- Hub
+- Service type
+- Shipment status
+- Customer
+- Delivery agent
+
+Ensure that all dashboard statistics are calculated from actual database records.
+
+---
+
+# 5. COMPANY AND BRANCH MANAGEMENT
+
+Create a complete company and branch management module.
+
+### Company profile
+
+- Company name
+- Legal business name
+- Company code
+- Logo
+- Registered address
+- Operational address
+- Contact person
+- Phone
+- Email
+- Website
+- GSTIN
+- PAN
+- Business registration details
+- Bank account details
+- Invoice prefix
+- AWB prefix
+- Company terms and conditions
+- Signature and stamp
+- Status
+
+### Branch management
+
+- Branch name
+- Branch code
+- Branch type
+- Parent branch
+- Address
+- State
+- District
+- City
+- PIN code
+- Latitude and longitude
+- Branch manager
+- Contact details
+- Operating hours
+- Serviceable PIN codes
+- Assigned hubs
+- Status
+
+### Hub and sorting centre management
+
+- Hub name
+- Hub code
+- Hub type
+- Hub location
+- Parent hub
+- Receiving capacity
+- Dispatch capacity
+- Responsible manager
+- Working hours
+- Supported shipment types
+- Status
+
+### Warehouse management
+
+- Warehouse profile
+- Storage locations
+- Racks and shelves
+- Bin management
+- Inbound shipments
+- Outbound shipments
+- Stock movement
+- Inventory tracking
+- Warehouse capacity
+
+---
+
+# 6. CUSTOMER AND MERCHANT MANAGEMENT
+
+Create a complete customer relationship management module.
+
+### Customer categories
+
+- Individual
+- Business
+- Corporate
+- E-commerce seller
+- Marketplace seller
+- Franchise partner
+- International customer
+- Logistics partner
+
+### Customer profile
+
+- Customer ID
+- Customer type
+- Name / Business name
+- Contact person
+- Mobile number
+- Alternate mobile
+- Email
+- Billing address
+- Pickup address
+- GSTIN
+- PAN
+- Business documents
+- Customer category
+- Account manager
+- Assigned branch
+- Credit limit
+- Payment terms
+- Pricing plan
+- Wallet balance
+- Outstanding balance
+- COD preference
+- Status
+
+### Customer features
+
+- Multiple pickup addresses
+- Multiple delivery addresses
+- Shipment history
+- Payment history
+- Invoice history
+- COD history
+- Complaints
+- Service preferences
+- Customer notes
+- Document attachments
+- Customer-specific pricing
+- Credit management
+
+### Customer portal
+
+Customers must be able to:
+
+- Register and log in
+- Create shipments
+- Book pickups
+- Upload bulk shipment data
+- Generate shipping labels
+- Track shipments
+- View shipment history
+- Download invoices
+- View payment history
+- View COD settlements
+- Raise support tickets
+- Manage pickup addresses
+- Request cancellations
+- Manage API credentials
+
+---
+
+# 7. SHIPMENT BOOKING AND CONSIGNMENT MANAGEMENT
+
+This is the core module of the application.
+
+Create a complete shipment booking system.
+
+### Shipment types
+
+- Document
+- Parcel
+- Non-document
+- Fragile shipment
+- Electronic items
+- Perishable goods
+- Medical supplies
+- Industrial goods
+- Bulk cargo
+- E-commerce shipment
+- International shipment
+- Reverse pickup
+
+### Shipment booking form
+
+Create a professional booking interface with the following sections.
+
+#### A. Shipment identification
+
+- Shipment ID
+- AWB number
+- Booking reference
+- Booking date
+- Booking time
+- Booking branch
+- Booking executive
+- Booking channel
+- Shipment source
+- Shipment type
+
+#### B. Sender details
+
+- Sender name
+- Company name
+- Contact number
+- Email
+- Complete address
+- PIN code
+- City
+- District
+- State
+- Country
+- GSTIN (optional)
+
+#### C. Receiver details
+
+- Receiver name
+- Company name
+- Contact number
+- Alternate contact
+- Email
+- Complete address
+- PIN code
+- City
+- District
+- State
+- Country
+- Delivery instructions
+
+#### D. Package details
+
+- Number of packages
+- Package description
+- Actual weight
+- Length
+- Width
+- Height
+- Volumetric weight
+- Chargeable weight
+- Package type
+- Fragile indicator
+- Special handling instructions
+- Declared value
+- Invoice value
+- Package images
+- Supporting documents
+
+#### E. Service selection
+
+- Standard
+- Express
+- Same-day
+- Next-day
+- Surface
+- Air
+- Road
+- Rail
+- International
+- Special handling
+- Reverse logistics
+
+#### F. Payment details
+
+- Freight charges
+- Fuel surcharge
+- Handling charges
+- Pickup charges
+- Insurance charges
+- Packaging charges
+- COD charges
+- Additional charges
+- Discount
+- Tax
+- Total amount
+- Payment method
+- Payment status
+
+### Payment types
+
+- Prepaid
+- Cash
+- UPI
+- Card
+- Bank transfer
+- Credit account
+- Cash on Delivery
+- Third-party billing
+
+### Shipment creation workflow
+
+1. Select customer.
+2. Enter sender details.
+3. Enter receiver details.
+4. Add package information.
+5. Calculate actual and volumetric weight.
+6. Determine chargeable weight.
+7. Select shipping service.
+8. Calculate applicable charges.
+9. Confirm payment or credit terms.
+10. Generate unique AWB number.
+11. Generate shipping label.
+12. Generate booking receipt.
+13. Create pickup request if required.
+14. Add shipment to the operational workflow.
+15. Notify sender and receiver according to notification preferences.
+
+### Shipment management features
+
+- Create shipment
+- Edit shipment
+- Duplicate shipment
+- Cancel shipment
+- Hold shipment
+- Rebook shipment
+- Assign pickup
+- Assign delivery
+- Change destination with approval
+- Update service
+- Add internal notes
+- Add shipment attachments
+- Print labels
+- Print receipts
+- Bulk update
+- Bulk export
+
+Maintain an immutable audit trail for important shipment changes.
+
+---
+
+# 8. AWB AND TRACKING NUMBER MANAGEMENT
+
+Create a unique tracking number generation system.
+
+### AWB features
+
+- Automatic AWB generation
+- Custom AWB prefixes
+- Company-specific prefixes
+- Branch-specific numbering (configurable)
+- Sequential numbering
+- Duplicate prevention
+- Manual AWB assignment with permission
+- AWB barcode generation
+- QR code generation
+- AWB search
+- AWB history
+
+### Tracking page
+
+Create a public tracking page accessible without login.
+
+Customer can search using:
+
+- AWB number
+- Shipment tracking number
+- Customer reference number (if enabled)
+
+Display:
+
+- Tracking number
+- Booking date
+- Origin
+- Destination
+- Current status
+- Expected delivery date
+- Latest tracking event
+- Complete tracking timeline
+- Delivery attempts
+- Delivery confirmation
+- Support contact
+
+Never expose internal notes, private customer details, or sensitive employee information on public tracking pages.
+
+### Tracking events
+
+Create standardized shipment statuses:
+
+1. Shipment Created
+2. Booking Confirmed
+3. Pickup Scheduled
+4. Pickup Assigned
+5. Pickup Attempted
+6. Picked Up
+7. Received at Origin Branch
+8. Dispatched from Origin Branch
+9. In Transit
+10. Arrived at Transit Hub
+11. Sorting in Progress
+12. Dispatched from Hub
+13. Arrived at Destination Hub
+14. Received at Destination Branch
+15. Out for Delivery
+16. Delivery Attempted
+17. Delivery Delayed
+18. Delivery Rescheduled
+19. Delivered
+20. Delivery Failed
+21. Held at Branch
+22. Customer Requested Hold
+23. Return Initiated
+24. Return in Transit
+25. Returned to Origin
+26. Shipment Cancelled
+27. Shipment Lost
+28. Shipment Damaged
+29. Shipment On Hold
+30. Shipment Exception
+
+Allow administrators to configure additional statuses and status categories.
+
+Every tracking event must record:
+
+- Shipment ID
+- Status
+- Event date and time
+- Current location
+- Previous location
+- Next destination
+- Updated by
+- Responsible branch or hub
+- Remarks
+- Proof or attachments
+- Public visibility setting
+- GPS coordinates, where available
+
+Do not permit arbitrary status changes that violate the shipment lifecycle. Implement a configurable transition rules engine.
+
+---
+
+# 9. PICKUP MANAGEMENT
+
+Create a dedicated pickup management module.
+
+### Pickup request
+
+- Pickup request ID
+- Customer
+- Pickup address
+- Contact person
+- Contact number
+- Preferred date
+- Preferred time slot
+- Number of packages
+- Estimated weight
+- Special instructions
+- Assigned pickup agent
+- Assigned vehicle
+- Pickup status
+
+### Pickup statuses
+
+- Requested
+- Pending Assignment
+- Assigned
+- Accepted
+- En Route
+- Arrived
+- Pickup Completed
+- Partially Picked Up
+- Pickup Failed
+- Rescheduled
+- Cancelled
+
+### Pickup agent features
+
+- View assigned pickups
+- Accept or reject assignment
+- Navigate to pickup location
+- Call customer
+- Update pickup status
+- Capture package count
+- Capture actual weight
+- Upload package photos
+- Record customer remarks
+- Capture GPS coordinates
+- Capture digital acknowledgement
+
+Support multiple pickup requests and shipments in a single pickup run.
+
+---
+
+# 10. HUB AND SORTING MANAGEMENT
+
+Build a complete logistics hub management system.
+
+### Inbound operations
+
+- Receive shipments
+- Scan AWB barcode
+- Scan QR code
+- Verify shipment details
+- Record arrival time
+- Assign receiving hub
+- Identify damaged packages
+- Record discrepancies
+- Update shipment status
+
+### Sorting operations
+
+- Sort by destination PIN code
+- Sort by destination branch
+- Sort by delivery zone
+- Sort by route
+- Sort by service type
+- Sort by priority
+- Sort by shipment category
+- Bulk scan and process
+
+### Outbound operations
+
+- Create dispatch manifest
+- Assign transport vehicle
+- Assign driver
+- Select destination hub
+- Record shipment count
+- Scan shipments into dispatch
+- Seal bag or container
+- Generate manifest
+- Record dispatch time
+- Update shipment tracking
+
+### Bag and container management
+
+- Bag ID
+- Container ID
+- Origin hub
+- Destination hub
+- Shipment count
+- Bag weight
+- Seal number
+- Created by
+- Dispatch date
+- Received date
+- Bag status
+
+Allow shipments to be grouped into bags, cages, pallets, or containers.
+
+Maintain a complete chain of custody for every shipment.
+
+---
+
+# 11. MANIFEST AND DISPATCH MANAGEMENT
+
+Create a dispatch and manifest module.
+
+### Manifest creation
+
+- Manifest number
+- Origin branch
+- Destination branch
+- Origin hub
+- Destination hub
+- Vehicle
+- Driver
+- Transport partner
+- Dispatch date
+- Expected arrival
+- Shipment list
+- Total packages
+- Total weight
+- Bag/container details
+- Manifest status
+
+### Manifest operations
+
+- Create manifest
+- Add shipments
+- Remove shipments before dispatch
+- Scan shipments
+- Verify shipment count
+- Assign vehicle
+- Assign driver
+- Generate PDF manifest
+- Print manifest
+- Dispatch manifest
+- Receive manifest
+- Close manifest
+- Record missing shipments
+- Record damaged shipments
+- Reconcile manifest
+
+A manifest must not be dispatched until required validations are completed.
+
+Once dispatched, changes must be handled through controlled exception procedures and audited.
+
+---
+
+# 12. ROUTE AND TRANSPORT MANAGEMENT
+
+Create a transportation management module.
+
+### Route management
+
+- Route name
+- Route code
+- Origin location
+- Destination location
+- Intermediate hubs
+- Distance
+- Estimated travel time
+- Route type
+- Service level
+- Active status
+
+### Route planning
+
+- Branch-to-branch routes
+- Hub-to-hub routes
+- Local delivery routes
+- Intercity routes
+- State-to-state routes
+- National routes
+- International routes
+
+### Route assignment
+
+- Assign vehicle
+- Assign driver
+- Assign helper
+- Assign shipments
+- Assign bags
+- Planned departure
+- Actual departure
+- Planned arrival
+- Actual arrival
+- Route status
+
+### Route optimization
+
+Support optional integration with a mapping and route optimization provider.
+
+Features:
+
+- Distance calculation
+- Estimated travel time
+- Stop sequencing
+- Delivery priority
+- Traffic-aware routing where supported
+- Multiple-stop route planning
+
+Do not claim real-time traffic or GPS functionality unless the required provider and hardware integrations are configured.
+
+---
+
+# 13. VEHICLE AND FLEET MANAGEMENT
+
+Create a complete fleet management module.
+
+### Vehicle types
+
+- Motorcycle
+- Scooter
+- Three-wheeler
+- Mini truck
+- Pickup van
+- Truck
+- Container truck
+- Refrigerated vehicle
+- Heavy commercial vehicle
+- Other
+
+### Vehicle profile
+
+- Vehicle number
+- Registration number
+- Vehicle type
+- Brand
+- Model
+- Capacity
+- Maximum load
+- Fuel type
+- Purchase date
+- Insurance expiry
+- Fitness certificate expiry
+- Permit expiry
+- Pollution certificate expiry
+- Assigned branch
+- Assigned driver
+- Current status
+- GPS device ID, if configured
+
+### Fleet operations
+
+- Vehicle assignment
+- Trip management
+- Fuel tracking
+- Mileage tracking
+- Maintenance schedule
+- Service history
+- Repair records
+- Insurance tracking
+- Document expiry reminders
+- Accident records
+- Vehicle expenses
+- Vehicle utilization
+- Trip profitability
+
+### Driver management
+
+- Driver profile
+- Contact details
+- Driving license
+- License expiry
+- Identity documents
+- Assigned vehicle
+- Employment details
+- Emergency contact
+- Trip history
+- Attendance
+- Performance
+- Driver status
+
+---
+
+# 14. LAST-MILE DELIVERY MANAGEMENT
+
+Build a dedicated delivery management module.
+
+### Delivery assignment
+
+- Shipment
+- Delivery agent
+- Delivery zone
+- Delivery route
+- Vehicle
+- Assigned date
+- Delivery priority
+- Expected delivery time
+
+### Delivery agent application
+
+Create a mobile-friendly interface or Progressive Web App.
+
+The delivery agent must be able to:
+
+- Log in securely
+- View assigned shipments
+- View delivery route
+- Scan AWB barcode
+- View customer contact details
+- Call customer
+- Navigate to delivery address
+- Update shipment status
+- Record delivery attempts
+- Collect COD
+- Upload delivery proof
+- Capture GPS coordinates
+- Submit remarks
+- View daily collection
+- View completed deliveries
+- View pending deliveries
+
+### Delivery proof (POD)
+
+Support:
+
+- OTP verification
+- Receiver signature
+- Delivery photograph
+- Receiver name
+- Relationship to recipient
+- Delivery date and time
+- GPS location
+- Delivery remarks
+- Digital acknowledgement
+
+Allow administrators to configure mandatory POD methods by service type.
+
+### Failed delivery reasons
+
+- Customer unavailable
+- Address incorrect
+- Address incomplete
+- Customer refused
+- Customer requested reschedule
+- Phone switched off
+- Premises closed
+- Payment unavailable
+- Delivery agent unable to access location
+- Other
+
+### Reattempt management
+
+- Schedule reattempt
+- Assign another delivery agent
+- Change delivery slot
+- Record reattempt reason
+- Set maximum attempt limits
+- Escalate unresolved shipments
+
+---
+
+# 15. COD MANAGEMENT
+
+Create a complete Cash on Delivery management module.
+
+### COD configuration
+
+- COD enabled per customer
+- COD enabled per service
+- COD amount
+- COD handling fee
+- COD collection method
+- Settlement frequency
+- Minimum settlement amount
+- Settlement account
+- Customer-specific COD rules
+
+### COD collection
+
+- Shipment AWB
+- Customer
+- COD amount
+- Delivery agent
+- Collection date
+- Collection method
+- Transaction reference
+- Collection status
+
+### COD settlement
+
+- Settlement ID
+- Customer / merchant
+- Total COD collected
+- Delivery charges
+- COD handling charges
+- Other deductions
+- Refunds or adjustments
+- Tax, where applicable
+- Net settlement amount
+- Settlement date
+- Bank reference
+- Settlement status
+
+### Settlement statuses
+
+- Pending
+- Under Review
+- Approved
+- Processing
+- Paid
+- Failed
+- Reversed
+- Disputed
+
+### COD reconciliation
+
+- Agent-wise COD reconciliation
+- Branch-wise COD reconciliation
+- Daily collection reports
+- Bank settlement reconciliation
+- Merchant settlement reports
+- Unmatched transaction reports
+- Pending COD reports
+
+Implement a proper financial ledger. Prevent duplicate settlements and unauthorized settlement edits.
+
+---
+
+# 16. REVERSE LOGISTICS AND RTO MANAGEMENT
+
+Create a dedicated reverse logistics module.
+
+### Reverse pickup
+
+- Reverse pickup request
+- Original AWB
+- Return reason
+- Pickup address
+- Destination
+- Assigned agent
+- Pickup schedule
+- Package condition
+- Reverse shipment number
+
+### RTO management
+
+- RTO initiation
+- RTO reason
+- Approval workflow
+- Return manifest
+- Return transit tracking
+- Origin branch receipt
+- Merchant notification
+- Return delivery confirmation
+- RTO charges
+- RTO settlement
+
+### Return reasons
+
+- Customer rejected
+- Customer unavailable
+- Incorrect address
+- Delivery attempts exhausted
+- Product refused
+- Damaged shipment
+- Incorrect product
+- Merchant requested return
+- Other
+
+Support exchange shipments and replacement shipments.
+
+---
+
+# 17. PRICING AND RATE CALCULATION ENGINE
+
+Build a configurable pricing engine.
+
+### Pricing models
+
+- Flat rate
+- Weight-based rate
+- Slab-based rate
+- Distance-based rate
+- PIN-code-based rate
+- Zone-based rate
+- Service-based rate
+- Customer-specific rate
+- Contract-based rate
+- COD-based fee
+- Minimum shipment charge
+- Additional package charge
+
+### Zone management
+
+Create configurable shipping zones:
+
+- Local
+- Regional
+- Metro
+- National
+- Special zones
+- Remote areas
+- International zones
+
+Allow companies to define their own zones.
+
+### PIN code serviceability
+
+Maintain a PIN code database with:
+
+- PIN code
+- Post office
+- City
+- District
+- State
+- Country
+- Service zone
+- Serviceability status
+- Pickup availability
+- Delivery availability
+- COD availability
+- Express availability
+- Estimated delivery time
+
+### Weight calculation
+
+Actual weight = measured package weight.
+
+Volumetric weight = (Length × Width × Height) / configured volumetric divisor.
+
+Chargeable weight = greater of actual weight and volumetric weight, subject to the company's rounding and minimum-weight rules.
+
+The volumetric divisor and rounding rules must be configurable by service and carrier.
+
+### Charge calculation
+
+Calculate:
+
+- Base freight
+- Additional weight charges
+- Fuel surcharge
+- Remote-area surcharge
+- Handling fee
+- Insurance
+- COD fee
+- Packaging fee
+- Pickup fee
+- Other charges
+- Discounts
+- Applicable taxes
+- Total payable amount
+
+Provide a price calculator before booking.
+
+### Rate cards
+
+- Standard rate card
+- Express rate card
+- Surface rate card
+- Air rate card
+- International rate card
+- Corporate rate card
+- Merchant rate card
+- Franchise rate card
+
+Maintain rate-card version history and effective dates.
+
+---
+
+# 18. INTERNATIONAL COURIER MANAGEMENT
+
+Support international shipment workflows.
+
+### International shipment details
+
+- Origin country
+- Destination country
+- Exporter details
+- Importer details
+- Sender tax details where applicable
+- Receiver tax details where applicable
+- Shipment purpose
+- Declared value
+- Currency
+- Package details
+- Customs declaration
+- HS code
+- Country of origin
+- Commercial invoice
+- Packing list
+- Supporting documents
+
+### International operations
+
+- Customs documentation
+- Export clearance status
+- Import clearance status
+- Customs hold
+- Duties and taxes information
+- International tracking events
+- Overseas carrier reference
+- Delivery confirmation
+
+Do not calculate or promise customs duties automatically unless an authorized, configured service provides the required data.
+
+Allow manual updates and integration with authorized international carrier APIs.
+
+---
+
+# 19. E-COMMERCE AND MARKETPLACE INTEGRATION
+
+Create an integration-ready e-commerce shipping module.
+
+### Merchant features
+
+- Merchant account
+- Store management
+- API credentials
+- Pickup locations
+- Default package settings
+- Shipping rules
+- COD configuration
+- Order import
+- Shipment creation
+- Bulk AWB generation
+- Bulk label printing
+- Tracking synchronization
+- COD reports
+- Return management
+
+### Integration architecture
+
+Provide REST APIs and webhook support for external platforms.
+
+Prepare configurable connectors for:
+
+- Shopify
+- WooCommerce
+- Magento
+- Custom e-commerce websites
+- Marketplace systems
+- Third-party order management systems
+
+Implement integrations only when the relevant API credentials and specifications are provided.
+
+### Webhook events
+
+- Shipment created
+- Pickup scheduled
+- Shipment picked up
+- Shipment dispatched
+- In transit
+- Out for delivery
+- Delivered
+- Delivery failed
+- RTO initiated
+- Returned to origin
+- COD settlement completed
+
+Support webhook signing, retries, failure logs, and delivery history.
+
+---
+
+# 20. CARRIER AND THIRD-PARTY LOGISTICS INTEGRATIONS
+
+Build a configurable carrier integration framework.
+
+### Carrier management
+
+- Carrier name
+- Carrier code
+- API base URL
+- Authentication method
+- API credentials
+- Service mapping
+- Tracking mapping
+- Pickup configuration
+- Label configuration
+- Rate configuration
+- Webhook configuration
+- Status
+
+### Integration capabilities
+
+- Rate checking
+- Shipment creation
+- AWB generation
+- Label generation
+- Pickup scheduling
+- Tracking synchronization
+- Cancellation
+- Delivery status updates
+- Manifest management
+
+Create an adapter-based architecture so different carriers can be integrated without changing the core shipment logic.
+
+Do not display a carrier as integrated until its API integration has actually been implemented, tested, and configured.
+
+---
+
+# 21. FRANCHISE MANAGEMENT
+
+Support franchise-based courier networks.
+
+### Franchise profile
+
+- Franchise ID
+- Franchise owner
+- Business name
+- Branch
+- Address
+- Contact details
+- GSTIN
+- Agreement documents
+- Commission plan
+- Security deposit
+- Operational territory
+- Assigned PIN codes
+- Status
+
+### Franchise operations
+
+- Franchise shipment bookings
+- Pickup operations
+- Delivery operations
+- Branch transfers
+- Shipment reconciliation
+- Commission calculation
+- Franchise invoices
+- Payment tracking
+- Performance reports
+- Franchise user management
+
+### Commission management
+
+Support configurable commission structures:
+
+- Per shipment
+- Percentage of freight
+- Fixed monthly commission
+- Service-specific commission
+- Pickup commission
+- Delivery commission
+- COD-related commission
+
+Maintain a transparent commission ledger and approval workflow.
+
+---
+
+# 22. BILLING, INVOICING AND GST
+
+Create a comprehensive billing module.
+
+### Billing types
+
+- Individual shipment invoice
+- Corporate monthly invoice
+- Merchant invoice
+- Franchise invoice
+- Transport partner invoice
+- Additional service invoice
+- Adjustment note
+- Credit note
+- Debit note
+
+### Invoice details
+
+- Invoice number
+- Invoice date
+- Customer details
+- GSTIN
+- Billing address
+- Shipment reference
+- AWB numbers
+- Freight charges
+- Other charges
+- Discounts
+- Taxable amount
+- Tax breakdown
+- Total invoice value
+- Amount paid
+- Outstanding balance
+- Due date
+- Payment terms
+
+### GST functionality
+
+- Configurable GST rates
+- CGST
+- SGST
+- IGST
+- Taxable and non-taxable line items
+- GSTIN validation field
+- HSN/SAC configuration
+- Place-of-supply fields
+- Credit and debit notes
+- Tax reports
+
+Use configurable tax rules and verify the applicable treatment with the company's tax professional. Do not hardcode tax rates or assume every shipment has identical tax treatment.
+
+### Payment management
+
+- Cash
+- UPI
+- Bank transfer
+- Card
+- Payment gateway
+- Wallet
+- Credit account
+- Partial payment
+- Advance payment
+- Refund
+- Payment reversal
+
+Generate downloadable PDF invoices and payment receipts.
+
+---
+
+# 23. ACCOUNTING AND FINANCE MANAGEMENT
+
+Build an integrated accounting module.
+
+### Chart of accounts
+
+- Assets
+- Liabilities
+- Income
+- Expenses
+- Equity
+
+### Accounting modules
+
+- General ledger
+- Journal entries
+- Cash book
+- Bank book
+- Accounts receivable
+- Accounts payable
+- Customer ledger
+- Supplier ledger
+- Branch ledger
+- Franchise ledger
+- Expense management
+- Income management
+- Bank reconciliation
+- Payment reconciliation
+- Credit management
+
+### Revenue categories
+
+- Freight income
+- Pickup charges
+- COD handling income
+- Packaging income
+- Insurance income
+- Other service income
+
+### Expense categories
+
+- Fuel
+- Vehicle maintenance
+- Driver salary
+- Employee salary
+- Rent
+- Utilities
+- Packaging
+- Transportation
+- Carrier charges
+- Franchise commission
+- Marketing
+- Other operating expenses
+
+### Financial reports
+
+- Profit and loss
+- Balance sheet
+- Trial balance
+- Cash flow
+- General ledger
+- Outstanding receivables
+- Outstanding payables
+- Customer-wise profitability
+- Branch-wise profitability
+- Shipment-wise profitability
+
+Use double-entry accounting with balanced journal entries. Financial transactions must be traceable to their originating operational records.
+
+---
+
+# 24. CUSTOMER SUPPORT AND COMPLAINT MANAGEMENT
+
+Create a customer support module.
+
+### Ticket creation
+
+- Ticket ID
+- Customer
+- AWB number
+- Issue category
+- Priority
+- Subject
+- Description
+- Attachments
+- Assigned department
+- Assigned executive
+- Due date
+- Resolution status
+
+### Complaint categories
+
+- Delayed shipment
+- Lost shipment
+- Damaged shipment
+- Wrong delivery
+- Missing package
+- Incorrect charges
+- COD not settled
+- Pickup not completed
+- Delivery agent complaint
+- Billing issue
+- Other
+
+### Ticket workflow
+
+- Open
+- Assigned
+- In Progress
+- Waiting for Customer
+- Escalated
+- Resolved
+- Closed
+- Reopened
+
+### SLA management
+
+- Response time
+- Resolution time
+- Priority-based SLA
+- Escalation rules
+- Overdue ticket alerts
+- Department performance
+
+Allow support executives to view shipment tracking and permitted customer information without giving them unrestricted financial or administrative access.
+
+---
+
+# 25. CLAIMS, LOST AND DAMAGED SHIPMENTS
+
+Create a claims management module.
+
+### Claim registration
+
+- Claim ID
+- AWB number
+- Customer
+- Claim category
+- Damage or loss description
+- Declared shipment value
+- Claimed amount
+- Supporting documents
+- Photographs
+- Investigation notes
+- Assigned investigator
+
+### Claim workflow
+
+- Submitted
+- Under Review
+- Investigation
+- Documents Required
+- Approved
+- Partially Approved
+- Rejected
+- Paid
+- Closed
+
+### Claim features
+
+- Approval levels
+- Claim history
+- Customer communication
+- Liability configuration
+- Compensation tracking
+- Financial adjustment
+- Claim reports
+
+---
+
+# 26. NOTIFICATION AND COMMUNICATION SYSTEM
+
+Create a centralized notification engine.
+
+### Channels
+
+- SMS
+- Email
+- WhatsApp Business API
+- In-app notifications
+- Customer portal notifications
+
+### Notification triggers
+
+- Shipment booked
+- Pickup scheduled
+- Pickup assigned
+- Pickup completed
+- Shipment dispatched
+- Shipment arrived at hub
+- Out for delivery
+- Delivery attempted
+- Shipment delivered
+- Delivery failed
+- RTO initiated
+- COD settlement completed
+- Invoice generated
+- Payment overdue
+- Support ticket updated
+
+### Notification management
+
+- Template creation
+- Template variables
+- Language selection
+- Channel selection
+- Delivery logs
+- Retry mechanism
+- Failed notification logs
+- Customer opt-in and opt-out
+- Notification preferences
+
+Support English, Hindi, and Assamese templates, with the ability to add more languages.
+
+---
+
+# 27. EMPLOYEE, HR AND ATTENDANCE MANAGEMENT
+
+Create a basic HR module.
+
+### Employee profile
+
+- Employee ID
+- Name
+- Contact information
+- Email
+- Address
+- Department
+- Designation
+- Branch
+- Joining date
+- Employment type
+- Salary
+- Documents
+- Emergency contact
+- Status
+
+### HR features
+
+- Attendance
+- Shift management
+- Leave management
+- Holiday management
+- Payroll records
+- Salary components
+- Incentives
+- Delivery performance incentives
+- Employee documents
+- Employee reports
+
+Allow optional biometric attendance integration through supported devices or APIs.
+
+---
+
+# 28. REPORTS AND BUSINESS ANALYTICS
+
+Create a powerful reporting module.
+
+### Shipment reports
+
+- Daily booking report
+- Monthly booking report
+- AWB register
+- Shipment status report
+- Delivered shipment report
+- Pending shipment report
+- Delayed shipment report
+- Failed delivery report
+- RTO report
+- Lost and damaged shipment report
+
+### Operational reports
+
+- Pickup performance
+- Delivery agent performance
+- Hub performance
+- Branch performance
+- Route performance
+- Manifest reconciliation
+- Vehicle utilization
+- Shipment aging
+- SLA performance
+
+### Financial reports
+
+- Revenue report
+- Expense report
+- COD collection report
+- COD settlement report
+- Customer outstanding report
+- Invoice report
+- Payment report
+- Franchise commission report
+- Profitability report
+
+### Customer reports
+
+- Customer shipment history
+- Customer revenue
+- Customer outstanding
+- Merchant performance
+- Corporate account utilization
+
+### Report features
+
+- Date filters
+- Branch filters
+- Customer filters
+- Service filters
+- Export to Excel
+- Export to CSV
+- PDF download
+- Print
+- Scheduled report generation
+
+---
+
+# 29. MOBILE APPLICATION / PWA
+
+Develop a mobile-first, responsive experience.
+
+At minimum, implement a Progressive Web App for delivery and pickup operations.
+
+### Delivery agent mobile dashboard
+
+- Today's assigned deliveries
+- Pending deliveries
+- Completed deliveries
+- Failed deliveries
+- COD collection
+- Route list
+- Shipment search
+- Barcode scanning
+- POD submission
+
+### Pickup agent mobile dashboard
+
+- Assigned pickups
+- Pickup route
+- Pickup confirmation
+- Package scanning
+- Weight recording
+- Photo upload
+- Customer acknowledgement
+
+### Offline support
+
+Where practical, allow agents to view previously synchronized assignments and capture events while offline.
+
+Offline events must be securely queued and synchronized when connectivity returns. Resolve conflicts and duplicate submissions using server-side validation and idempotency keys.
+
+Do not claim continuous GPS tracking when the device or browser cannot provide it or the user has not granted permission.
+
+---
+
+# 30. PUBLIC WEBSITE AND ONLINE BOOKING
+
+Create a configurable public-facing website.
+
+### Public pages
+
+- Home
+- About Us
+- Services
+- Domestic Courier
+- International Courier
+- E-commerce Logistics
+- Corporate Shipping
+- Franchise Opportunities
+- Contact Us
+- Track Shipment
+- Book Shipment
+- Serviceability Checker
+- Pricing Calculator
+- Privacy Policy
+- Terms and Conditions
+
+### Online booking
+
+Allow customers to:
+
+- Enter sender information
+- Enter receiver information
+- Add package details
+- Check serviceability
+- Calculate charges
+- Select service
+- Pay online where configured
+- Generate booking reference
+- Request pickup
+
+Include SEO-friendly URLs, metadata, sitemap, and structured data where appropriate.
+
+---
+
+# 31. API MANAGEMENT
+
+Create a secure REST API layer.
+
+### API capabilities
+
+- Authentication
+- Customer registration
+- Customer profile
+- Create shipment
+- Get shipment details
+- Cancel shipment
+- Check serviceability
+- Calculate rates
+- Generate AWB
+- Generate shipping label
+- Create pickup request
+- Track shipment
+- Get shipment history
+- Download invoice
+- COD information
+- Create return request
+- Webhook configuration
+
+### API security
+
+- Laravel Sanctum
+- API tokens
+- Token permissions
+- Rate limiting
+- Request validation
+- API versioning
+- Request logging
+- Idempotency keys
+- Webhook signatures
+- IP restrictions where appropriate
+
+Provide API documentation with sample requests and responses.
+
+---
+
+# 32. DOCUMENT AND LABEL MANAGEMENT
+
+Create a centralized document generation module.
+
+### Documents
+
+- Shipment booking receipt
+- Shipping label
+- AWB label
+- Pickup sheet
+- Delivery sheet
+- Dispatch manifest
+- Bag manifest
+- Invoice
+- Payment receipt
+- COD settlement statement
+- Customer account statement
+- Claim form
+- International commercial invoice
+- Packing list
+- Return receipt
+
+### Shipping label
+
+Include:
+
+- Company logo
+- AWB barcode
+- QR code
+- Sender details
+- Receiver details
+- Origin branch
+- Destination branch
+- Service type
+- Package count
+- Actual weight
+- Chargeable weight
+- COD amount, where applicable
+- Special handling instructions
+
+Support configurable A4 and thermal label formats.
+
+---
+
+# 33. AUTOMATION AND BUSINESS RULE ENGINE
+
+Create a configurable automation engine.
+
+### Automation examples
+
+- Automatically assign pickup requests based on PIN code.
+- Automatically assign shipments to a destination hub.
+- Automatically update expected delivery dates.
+- Notify customers when shipments are delayed.
+- Escalate shipments that exceed SLA.
+- Alert managers when shipments remain at a hub too long.
+- Generate daily COD reconciliation tasks.
+- Notify customers about pending COD settlements.
+- Remind administrators about expiring vehicle documents.
+- Automatically generate invoices for approved billing cycles.
+- Trigger RTO workflow after configured delivery attempts.
+- Generate daily branch performance summaries.
+
+### Rule configuration
+
+Allow administrators to configure:
+
+- Trigger event
+- Conditions
+- Actions
+- Execution timing
+- Target branch
+- Target role
+- Notification template
+- Active/inactive status
+
+Every automation must be logged and safe to retry without duplicating financial or shipment transactions.
+
+---
+
+# 34. SETTINGS AND CONFIGURATION
+
+Create a centralized settings module.
+
+### General settings
+
+- Company information
+- Logo and branding
+- Time zone
+- Date format
+- Currency
+- Language
+- Number format
+
+### Logistics settings
+
+- AWB prefix
+- Tracking configuration
+- Default shipment statuses
+- Status transition rules
+- Default service types
+- Default weight unit
+- Volumetric divisor
+- Weight rounding
+- Delivery attempt limits
+- RTO rules
+- Serviceability settings
+
+### Financial settings
+
+- Tax configuration
+- Invoice numbering
+- Payment methods
+- COD settlement rules
+- Credit limits
+- Payment terms
+- Currency settings
+
+### Integration settings
+
+- SMS gateway
+- Email SMTP
+- WhatsApp provider
+- Payment gateway
+- Maps provider
+- Carrier APIs
+- E-commerce APIs
+- Webhook settings
+
+### System settings
+
+- Backup settings
+- File storage
+- Queue settings
+- Notification settings
+- Audit logs
+- Maintenance mode
+- Security settings
+
+---
+
+# 35. DATABASE DESIGN – MYSQL
+
+Design a normalized relational MySQL database with proper indexes, foreign keys, constraints, and transactional integrity.
+
+Use Laravel migrations for every table.
+
+The following are the main table groups. Extend them wherever required.
+
+### A. Core system
+
+- companies
+- company_settings
+- branches
+- hubs
+- warehouses
+- warehouse_locations
+- users
+- roles
+- permissions
+- role_permissions
+- user_roles
+- user_branch_access
+- departments
+- employees
+- audit_logs
+
+### B. Customers and merchants
+
+- customers
+- customer_addresses
+- customer_contacts
+- customer_documents
+- customer_contracts
+- customer_rate_cards
+- customer_credit_limits
+- customer_notes
+- merchant_stores
+- customer_api_credentials
+
+### C. Geography and serviceability
+
+- countries
+- states
+- districts
+- cities
+- postal_codes
+- service_zones
+- zone_postal_codes
+- serviceability_rules
+- delivery_routes
+- route_stops
+
+### D. Shipment management
+
+- shipments
+- shipment_items
+- shipment_packages
+- shipment_addresses
+- shipment_charges
+- shipment_payments
+- shipment_statuses
+- shipment_tracking_events
+- shipment_documents
+- shipment_notes
+- shipment_exceptions
+- shipment_cancellations
+- shipment_history
+- awb_sequences
+
+### E. Pickup operations
+
+- pickup_requests
+- pickup_request_shipments
+- pickup_assignments
+- pickup_attempts
+- pickup_proofs
+
+### F. Hub and sorting
+
+- hub_receipts
+- hub_scans
+- sorting_batches
+- sorting_records
+- shipment_bags
+- bag_shipments
+- shipment_containers
+- container_shipments
+- hub_inventory_movements
+
+### G. Manifest and transport
+
+- manifests
+- manifest_shipments
+- manifest_bags
+- manifest_events
+- transport_routes
+- transport_trips
+- trip_shipments
+- trip_expenses
+- trip_events
+
+### H. Fleet and drivers
+
+- vehicles
+- vehicle_documents
+- vehicle_maintenance
+- vehicle_expenses
+- drivers
+- driver_documents
+- driver_assignments
+- driver_attendance
+- fuel_logs
+- gps_devices
+
+### I. Delivery operations
+
+- delivery_assignments
+- delivery_attempts
+- delivery_proofs
+- delivery_cod_collections
+- delivery_agent_routes
+- delivery_agent_events
+
+### J. COD and reverse logistics
+
+- cod_records
+- cod_collections
+- cod_settlements
+- cod_settlement_items
+- cod_adjustments
+- reverse_pickups
+- return_shipments
+- rto_records
+- exchange_shipments
+
+### K. Pricing
+
+- rate_cards
+- rate_card_zones
+- rate_slabs
+- service_types
+- surcharge_rules
+- discount_rules
+- customer_pricing_rules
+- weight_calculation_rules
+
+### L. Billing and accounting
+
+- invoices
+- invoice_items
+- credit_notes
+- debit_notes
+- payments
+- payment_allocations
+- refunds
+- expenses
+- chart_of_accounts
+- journal_entries
+- journal_entry_lines
+- ledger_accounts
+- bank_accounts
+- bank_transactions
+- bank_reconciliations
+
+### M. Franchise and partners
+
+- franchises
+- franchise_contracts
+- franchise_territories
+- franchise_commissions
+- franchise_settlements
+- transport_partners
+- carrier_accounts
+- carrier_services
+- carrier_api_logs
+
+### N. Support and claims
+
+- support_tickets
+- ticket_messages
+- ticket_attachments
+- ticket_assignments
+- ticket_sla_logs
+- shipment_claims
+- claim_documents
+- claim_approvals
+- claim_payments
+
+### O. Communication and integrations
+
+- notification_templates
+- notification_logs
+- notification_preferences
+- api_tokens
+- webhooks
+- webhook_logs
+- integration_settings
+- integration_logs
+- automation_rules
+- automation_logs
+
+### P. General application
+
+- documents
+- attachments
+- activity_logs
+- system_settings
+- scheduled_reports
+- import_jobs
+- export_jobs
+
+### Database requirements
+
+For all relevant tables:
+
+- Use unsigned big integer IDs or a consistent identifier strategy.
+- Include company_id wherever company-level isolation is required.
+- Include branch_id and hub_id where operationally relevant.
+- Include created_at and updated_at.
+- Use deleted_at for soft-deletable records where appropriate.
+- Use foreign keys and indexes.
+- Add unique constraints for AWB numbers within the intended company or global scope.
+- Use decimal columns for money and weight values where appropriate.
+- Store timestamps consistently and display them in the configured local time zone.
+- Use JSON only for genuinely flexible metadata, not as a replacement for relational design.
+- Preserve historical pricing and shipment charge snapshots.
+- Never delete posted financial transactions or completed shipment tracking events as ordinary CRUD operations.
+
+Use database transactions for critical operations such as shipment booking, AWB assignment, manifest dispatch, delivery confirmation, COD settlement, and accounting journal posting.
+
+---
+
+# 36. CRITICAL BUSINESS RULES
+
+Implement the following rules carefully.
+
+1. Every shipment must have a unique AWB number within the configured uniqueness scope.
+2. A shipment must have valid sender and receiver information.
+3. A shipment cannot be booked without valid package details.
+4. Chargeable weight must follow the configured weight rules.
+5. Pricing must be calculated using the applicable rate card at booking time.
+6. Historical shipment charges must not change when future rate cards are updated.
+7. A shipment must not be assigned to an unsupported route or unserviceable destination.
+8. Shipment status transitions must follow configured workflow rules.
+9. A shipment cannot be marked delivered without the required delivery proof.
+10. COD collection cannot exceed the configured collectible amount without authorized adjustment.
+11. COD settlement must not be duplicated.
+12. A shipment cannot appear in two active dispatch manifests simultaneously unless an explicit split-shipment workflow allows it.
+13. Shipment scans must be idempotent where duplicate scans would otherwise cause operational errors.
+14. Failed delivery must require a failure reason.
+15. RTO must follow an approved return workflow.
+16. Financial transactions must create corresponding ledger entries.
+17. Posted invoices and settlements must be corrected through reversal or adjustment workflows, not silent edits.
+18. Only authorized users can cancel, delete, hold, or change high-value shipments.
+19. Public tracking must never expose private customer or financial information.
+20. Every important operational and financial change must be recorded in the audit log.
+
+---
+
+# 37. UI/UX DESIGN REQUIREMENTS
+
+Build a modern, professional logistics ERP interface.
+
+### Design direction
+
+- Clean enterprise dashboard
+- Modern sidebar navigation
+- Responsive top navigation
+- Clear typography
+- Consistent spacing
+- Professional data tables
+- Status badges
+- Searchable dropdowns
+- Advanced filters
+- Pagination
+- Modal forms
+- Confirmation dialogs
+- Toast notifications
+- Loading indicators
+- Empty states
+- Error states
+- Mobile-friendly layouts
+
+### Main sidebar navigation
+
+1. Dashboard
+2. Shipments
+   - All Shipments
+   - Book Shipment
+   - Bulk Upload
+   - Track Shipment
+   - Cancelled Shipments
+   - Exceptions
+3. Pickups
+4. Hub Operations
+   - Inbound
+   - Sorting
+   - Outbound
+   - Bags and Containers
+5. Manifest
+6. Transport
+7. Delivery
+8. Reverse Logistics
+9. COD Management
+10. Customers
+11. Merchants
+12. Branches
+13. Hubs
+14. Warehouses
+15. Fleet
+16. Drivers
+17. Franchise
+18. Pricing
+19. Billing
+20. Accounting
+21. Support Tickets
+22. Claims
+23. Reports
+24. Employees
+25. Integrations
+26. Automation
+27. Settings
+
+The sidebar must be generated dynamically based on permissions.
+
+### Data table requirements
+
+All major listing pages should support:
+
+- Search
+- Advanced filters
+- Sorting
+- Pagination
+- Column visibility
+- Export
+- Bulk selection
+- Bulk actions
+- Row-level actions
+- Status indicators
+- Date range filters
+
+Avoid overcrowded forms. Use tabs, steps, accordions, and clear section headings for complex shipment workflows.
+
+---
+
+# 38. SECURITY AND DATA PROTECTION
+
+Implement production-grade security.
+
+- Laravel authentication
+- Password hashing
+- Role-based permissions
+- Company-level data isolation
+- CSRF protection
+- XSS protection
+- SQL injection prevention
+- Input validation
+- File upload validation
+- Secure document access
+- API authentication
+- Rate limiting
+- Login attempt controls
+- Secure session management
+- Audit logs
+- Encrypted sensitive configuration
+- Backup and restore procedures
+
+Do not expose customer identity documents, bank information, API secrets, or private delivery information to unauthorized users.
+
+Use signed or authenticated URLs for sensitive documents.
+
+---
+
+# 39. PERFORMANCE AND SCALABILITY
+
+Design the application for large shipment volumes.
+
+Implement:
+
+- Database indexing
+- Query optimization
+- Eager loading
+- Pagination
+- Caching
+- Queue-based notifications
+- Queue-based document generation
+- Background imports
+- Background exports
+- Scheduled status checks
+- Optimized tracking queries
+- Efficient bulk scanning
+- Database transaction management
+- Monitoring and error logging
+
+Avoid loading thousands of shipments into a single page.
+
+Design the architecture so that a company can scale from a small local courier agency to a multi-branch logistics operation.
+
+---
+
+# 40. TESTING AND QUALITY ASSURANCE
+
+Write automated tests using Laravel's testing tools and PHPUnit or Pest.
+
+### Unit tests
+
+- AWB generation
+- Weight calculation
+- Rate calculation
+- Tax calculation
+- COD calculation
+- Commission calculation
+- Shipment status transition
+- RTO calculation
+- Invoice totals
+
+### Feature tests
+
+- User authentication
+- Permission enforcement
+- Company isolation
+- Branch access
+- Shipment booking
+- Pickup assignment
+- Hub receiving
+- Sorting and dispatch
+- Manifest reconciliation
+- Delivery confirmation
+- Failed delivery
+- COD collection
+- COD settlement
+- Invoice generation
+- Customer portal
+- API authentication
+
+### Security tests
+
+- Unauthorized access
+- Cross-company data access
+- Invalid shipment updates
+- Duplicate payments
+- Duplicate COD settlement
+- Duplicate AWB generation
+- File upload validation
+- API rate limiting
+
+### Operational testing
+
+Test complete end-to-end scenarios, not only individual forms.
+
+Example scenario:
+
+1. A merchant creates a shipment.
+2. The system calculates freight.
+3. AWB is generated.
+4. Pickup is assigned.
+5. Pickup agent collects the package.
+6. Origin branch receives the shipment.
+7. Shipment is dispatched to a hub.
+8. Hub scans and sorts the shipment.
+9. A manifest is generated.
+10. Shipment reaches the destination hub.
+11. Shipment is assigned to a delivery agent.
+12. Delivery agent collects COD.
+13. Receiver verifies delivery through OTP.
+14. Shipment is marked delivered.
+15. COD collection is reconciled.
+16. Merchant settlement is generated.
+17. Customer receives the final notification.
+
+Verify that the tracking history, accounting records, COD ledger, and reports are consistent throughout the workflow.
+
+---
+
+# 41. DEVELOPMENT PHASES
+
+Build the application in the following phases.
+
+## Phase 1 – Core Foundation
+
+- Laravel project setup
+- Database architecture
+- Authentication
+- Company management
+- Branch management
+- User roles and permissions
+- Master settings
+- Dashboard foundation
+
+## Phase 2 – Shipment Operations
+
+- Customer management
+- Shipment booking
+- AWB generation
+- Package management
+- Pricing engine
+- Shipping labels
+- Public tracking
+- Shipment status management
+
+## Phase 3 – Logistics Operations
+
+- Pickup management
+- Hub management
+- Inbound scanning
+- Sorting
+- Bag and container management
+- Manifest
+- Dispatch
+- Transport routes
+
+## Phase 4 – Delivery Operations
+
+- Delivery assignments
+- Delivery agent portal
+- POD
+- OTP delivery
+- Failed delivery
+- Reattempts
+- RTO and reverse logistics
+
+## Phase 5 – Finance
+
+- COD collection
+- COD reconciliation
+- COD settlements
+- Billing
+- Invoices
+- Payments
+- Expenses
+- Accounting
+
+## Phase 6 – Advanced Operations
+
+- Fleet management
+- Drivers
+- Franchise management
+- Warehouses
+- Claims
+- Customer support
+- SLA management
+
+## Phase 7 – Integrations
+
+- SMS
+- Email
+- WhatsApp
+- Payment gateways
+- Maps
+- Carrier APIs
+- E-commerce APIs
+- Public booking website
+- Customer and merchant portals
+
+## Phase 8 – Analytics and Production
+
+- Advanced reports
+- Business analytics
+- Automation
+- Performance optimization
+- Security testing
+- Backup configuration
+- Production deployment
+- Documentation
+
+---
+
+# 42. REQUIRED PROJECT STRUCTURE
+
+Use a clean and maintainable Laravel project structure.
+
+Organize business logic into dedicated modules, services, actions, jobs, events, listeners, policies, requests, and API resources.
+
+Suggested service classes:
+
+- AwbGeneratorService
+- ShipmentBookingService
+- ShipmentTrackingService
+- ShipmentStatusService
+- WeightCalculationService
+- RateCalculationService
+- TaxCalculationService
+- PickupAssignmentService
+- HubProcessingService
+- SortingService
+- ManifestService
+- RoutePlanningService
+- DeliveryAssignmentService
+- DeliveryProofService
+- CodCollectionService
+- CodSettlementService
+- RtoManagementService
+- InvoiceGenerationService
+- AccountingService
+- NotificationService
+- CarrierIntegrationService
+- WebhookService
+- ReportGenerationService
+
+Use Form Request validation classes, policies, database transactions, and automated tests.
+
+Do not put all business logic inside controllers or Livewire components.
+
+---
+
+# 43. DEMO DATA AND SEEDERS
+
+Create realistic demo data for testing and product demonstrations.
+
+Include:
+
+- One demo logistics company
+- Multiple branches
+- Multiple hubs
+- Several warehouses
+- PIN code and zone samples
+- Admin and operational users
+- Customers and merchants
+- Delivery agents
+- Drivers and vehicles
+- Rate cards
+- Sample shipments in different statuses
+- Sample pickup requests
+- Sample manifests
+- Sample COD collections
+- Sample invoices
+- Sample support tickets
+
+Create a demo dataset that demonstrates the complete shipment lifecycle.
+
+Provide secure demo login credentials in the development documentation only. Never ship default production passwords.
+
+---
+
+# 44. DOCUMENTATION
+
+Create complete technical and user documentation.
+
+Required documents:
+
+1. Installation guide
+2. Environment configuration guide
+3. Database structure documentation
+4. Module documentation
+5. User role and permission documentation
+6. Shipment lifecycle documentation
+7. AWB generation documentation
+8. Pricing calculation documentation
+9. COD workflow documentation
+10. API documentation
+11. Webhook documentation
+12. Integration configuration guide
+13. Backup and restore guide
+14. Deployment guide
+15. Troubleshooting guide
+16. User manual
+
+---
+
+# 45. FINAL ACCEPTANCE CRITERIA
+
+The project is complete only when:
+
+- All core modules are implemented.
+- Database migrations run successfully.
+- Demo seeders run successfully.
+- Authentication works.
+- RBAC works correctly.
+- Company and branch isolation works.
+- Shipment booking works end to end.
+- AWB generation is unique and reliable.
+- Weight and freight calculations are correct.
+- Public shipment tracking works.
+- Pickup assignment works.
+- Hub scanning and sorting work.
+- Manifest generation and dispatch work.
+- Delivery assignment works.
+- Delivery proof is captured and verified.
+- Failed delivery and reattempts work.
+- RTO and reverse logistics work.
+- COD collection and settlement work.
+- Billing and invoices work.
+- Accounting entries balance.
+- Reports use real database records.
+- Customer and merchant portals work.
+- API authentication and validation work.
+- Notifications are logged and retryable.
+- Security and company isolation tests pass.
+- Mobile layouts work properly.
+- Documentation is complete.
+
+Do not create placeholder buttons or non-functional menu items and mark them as completed.
+
+If a feature depends on a third-party integration, clearly identify it as pending configuration until the integration is implemented and tested.
+
+---
+
+# 46. IMPORTANT INSTRUCTIONS FOR THE AI DEVELOPMENT AGENT
+
+Follow these instructions throughout development:
+
+1. First inspect the existing project directory and identify the current Laravel version, installed packages, database configuration, and existing modules.
+2. Do not overwrite existing working functionality without understanding its dependencies.
+3. Prepare the architecture and implementation plan before writing large amounts of code.
+4. Build the application module by module.
+5. Create database migrations before implementing dependent functionality.
+6. Implement actual backend business logic, not just frontend screens.
+7. Use reusable Blade components and Livewire components.
+8. Use service classes for complex business logic.
+9. Use database transactions for critical operations.
+10. Use queues for time-consuming background jobs.
+11. Validate every user input on the server.
+12. Apply permissions to every protected route and action.
+13. Ensure company-level data isolation in every relevant query.
+14. Write tests for every critical business workflow.
+15. Use realistic demo data.
+16. Do not use fake statistics in the dashboard.
+17. Do not leave important modules as static UI.
+18. Do not hardcode payment gateway, SMS, WhatsApp, map, or carrier credentials.
+19. Do not assume external integrations work without testing them.
+20. Maintain consistent UI/UX across all modules.
+21. Keep the code modular, readable, secure, and maintainable.
+22. After completing each phase, run migrations, tests, and relevant workflows.
+23. Fix errors before proceeding to the next phase.
+24. Maintain a development progress document showing completed, pending, and blocked features.
+25. Never claim that a feature is complete until it has been implemented and tested.
+
+## FINAL DEVELOPMENT OBJECTIVE
+
+Deliver a fully functional, scalable, commercial-grade Courier & Logistics Management ERP that a courier company can use to manage its complete business operations—from customer registration and shipment booking to pickup, sorting, transportation, delivery, COD reconciliation, invoicing, accounting, customer support, and business analytics.
+
+The final product must be suitable for deployment as a commercial SaaS product with configurable company branding, subscription plans, multi-company support, and modular feature access.
+
+Prioritize correctness of shipment workflows, financial accuracy, auditability, security, and ease of daily operations over superficial visual design.
