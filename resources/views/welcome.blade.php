@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apex Logistics - Enterprise Courier & Supply Chain Solutions</title>
+    <title>Webotapp Logistics ERP - Enterprise Courier & Supply Chain Solutions</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Lucide Icons -->
@@ -16,7 +16,7 @@
             <div class="flex items-center gap-3">
                 <div class="h-9 w-9 rounded-xl bg-blue-600 flex items-center justify-center text-white font-bold text-xl shadow">▲</div>
                 <div>
-                    <span class="font-extrabold text-slate-900 tracking-tight text-lg">Apex Logistics</span>
+                    <span class="font-extrabold text-slate-900 tracking-tight text-lg">Webotapp Logistics</span>
                     <span class="hidden sm:inline-block ml-2 text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-blue-50 text-blue-700">Enterprise ERP</span>
                 </div>
             </div>

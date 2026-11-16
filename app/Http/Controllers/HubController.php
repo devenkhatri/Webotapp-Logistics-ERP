@@ -91,3 +91,4 @@ class HubController extends Controller
         return back()->with('success', "Bag {$bag->bag_number} sealed with " . count($validated['shipment_ids']) . " shipments!");
     }
 }
+

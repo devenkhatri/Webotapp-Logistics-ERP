@@ -22,3 +22,4 @@ class JournalEntryLine extends Model
         return $this->belongsTo(LedgerAccount::class, 'ledger_account_id');
     }
 }
+

@@ -30,3 +30,4 @@ class CodSettlement extends Model
         return $this->hasMany(CodSettlementItem::class);
     }
 }
+

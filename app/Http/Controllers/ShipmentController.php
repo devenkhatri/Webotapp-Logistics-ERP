@@ -226,3 +226,4 @@ class ShipmentController extends Controller
         return back()->with('success', "Shipment status updated to {$title}.");
     }
 }
+

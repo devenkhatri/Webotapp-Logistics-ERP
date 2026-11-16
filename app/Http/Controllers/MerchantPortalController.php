@@ -32,3 +32,4 @@ class MerchantPortalController extends Controller
         return view('portal.index', compact('customer', 'shipments', 'totalShipments', 'deliveredCount', 'codCollected', 'settlements'));
     }
 }
+

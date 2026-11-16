@@ -114,3 +114,4 @@ class BillingController extends Controller
         return view('billing.ledger', compact('accounts', 'recentJournalEntries'));
     }
 }
+

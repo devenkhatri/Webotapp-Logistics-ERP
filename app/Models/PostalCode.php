@@ -17,3 +17,4 @@ class PostalCode extends Model
         return $this->belongsTo(ServiceZone::class, 'zone_id');
     }
 }
+

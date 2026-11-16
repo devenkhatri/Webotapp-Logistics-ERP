@@ -43,3 +43,4 @@ class Manifest extends Model
         return $this->belongsToMany(Shipment::class, 'manifest_shipments');
     }
 }
+

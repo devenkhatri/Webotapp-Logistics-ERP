@@ -49,3 +49,4 @@ class Customer extends Model
         return $this->addresses()->where('is_default_pickup', true)->first();
     }
 }
+

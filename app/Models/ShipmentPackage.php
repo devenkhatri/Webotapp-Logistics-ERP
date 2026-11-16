@@ -17,3 +17,4 @@ class ShipmentPackage extends Model
         return $this->belongsTo(Shipment::class);
     }
 }
+

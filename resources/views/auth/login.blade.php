@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Apex Logistics ERP</title>
+    <title>Sign In - Webotapp Logistics ERP</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
@@ -14,7 +14,7 @@
             <div class="inline-flex h-12 w-12 rounded-xl bg-blue-600 items-center justify-center text-white font-bold text-2xl shadow-lg mb-3">
                 ▲
             </div>
-            <h1 class="text-2xl font-bold text-white tracking-tight">Apex Logistics ERP</h1>
+            <h1 class="text-2xl font-bold text-white tracking-tight">Webotapp Logistics ERP</h1>
             <p class="text-sm text-slate-400 mt-1">Enterprise Courier & Supply Chain Management</p>
         </div>
 
@@ -83,3 +83,4 @@
     </div>
 </body>
 </html>
+

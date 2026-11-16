@@ -30,3 +30,4 @@ class DeliveryRun extends Model
             ->withTimestamps();
     }
 }
+

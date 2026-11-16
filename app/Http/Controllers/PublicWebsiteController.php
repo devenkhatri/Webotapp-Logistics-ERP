@@ -26,3 +26,4 @@ class PublicWebsiteController extends Controller
         return view('welcome', compact('company', 'stats'));
     }
 }
+

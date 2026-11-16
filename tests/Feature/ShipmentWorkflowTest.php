@@ -278,3 +278,4 @@ class ShipmentWorkflowTest extends TestCase
         $this->assertEquals('booked', $trackResponse->json('data.status'));
     }
 }
+

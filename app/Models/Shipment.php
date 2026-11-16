@@ -125,3 +125,4 @@ class Shipment extends Model
         };
     }
 }
+

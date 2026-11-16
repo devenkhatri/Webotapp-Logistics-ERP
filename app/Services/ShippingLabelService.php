@@ -36,3 +36,4 @@ class ShippingLabelService
         return $pdf;
     }
 }
+

@@ -21,3 +21,4 @@ class RtoRecord extends Model
         return $this->belongsTo(Shipment::class, 'original_shipment_id');
     }
 }
+

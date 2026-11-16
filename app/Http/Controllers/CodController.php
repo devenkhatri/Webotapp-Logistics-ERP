@@ -82,3 +82,4 @@ class CodController extends Controller
         return back()->with('success', "Settlement marked as PAID. Reference: {$validated['transaction_reference']}");
     }
 }
+

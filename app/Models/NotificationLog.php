@@ -17,3 +17,4 @@ class NotificationLog extends Model
         return $this->belongsTo(Company::class);
     }
 }
+

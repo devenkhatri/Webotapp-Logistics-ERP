@@ -158,3 +158,4 @@ class DeliveryController extends Controller
         return back()->with('warning', "Failed delivery recorded for AWB {$shipment->awb_number}.");
     }
 }
+

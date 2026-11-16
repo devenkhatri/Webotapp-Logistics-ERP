@@ -82,3 +82,4 @@ class PickupController extends Controller
         return back()->with('success', "Pickup marked completed.");
     }
 }
+

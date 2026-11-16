@@ -26,3 +26,4 @@ class DeliveryProof extends Model
         return $this->belongsTo(User::class, 'delivery_agent_id');
     }
 }
+

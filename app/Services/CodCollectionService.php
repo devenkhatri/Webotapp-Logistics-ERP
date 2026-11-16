@@ -41,3 +41,4 @@ class CodCollectionService
         return $collection;
     }
 }
+

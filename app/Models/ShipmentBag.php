@@ -33,3 +33,4 @@ class ShipmentBag extends Model
         return $this->belongsToMany(Shipment::class, 'bag_shipments', 'bag_id', 'shipment_id');
     }
 }
+

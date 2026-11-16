@@ -17,3 +17,4 @@ class RateSlab extends Model
         return $this->belongsTo(RateCard::class);
     }
 }
+

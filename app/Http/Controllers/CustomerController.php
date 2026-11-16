@@ -93,3 +93,4 @@ class CustomerController extends Controller
         return view('customers.show', compact('customer'));
     }
 }
+

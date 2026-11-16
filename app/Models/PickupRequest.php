@@ -28,3 +28,4 @@ class PickupRequest extends Model
         return $this->belongsToMany(Shipment::class, 'pickup_request_shipments');
     }
 }
+

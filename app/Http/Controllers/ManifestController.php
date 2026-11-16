@@ -97,3 +97,4 @@ class ManifestController extends Controller
         return back()->with('success', "Manifest {$manifest->manifest_number} received at destination hub!");
     }
 }
+

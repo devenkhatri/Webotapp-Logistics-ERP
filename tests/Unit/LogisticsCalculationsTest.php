@@ -105,3 +105,4 @@ class LogisticsCalculationsTest extends TestCase
         $this->assertEquals(17.35, $quote['total_freight']);
     }
 }
+

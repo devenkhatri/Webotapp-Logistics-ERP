@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Operations Portal') - Apex Logistics ERP</title>
+    <title>@yield('title', 'Operations Portal') - Webotapp Logistics ERP</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -50,25 +50,95 @@
                     ▲
                 </div>
                 <div>
-                    <h1 class="text-white font-bold tracking-tight text-base leading-none">Apex Logistics</h1>
-                    <span class="text-xs text-blue-400 font-medium">Enterprise ERP</span>
+                    <h1 class="text-white font-bold tracking-tight text-base leading-none">Webotapp ERP</h1>
+                    <span class="text-xs text-blue-400 font-medium">Logistics & Supply Chain</span>
                 </div>
             </div>
 
-            <!-- Navigation Links -->
+            <!-- Navigation Links: Filtered strictly by User Role -->
+            @php
+                $user = auth()->user();
+                $role = $user->role ?? 'staff';
+                $isAdmin = in_array($role, ['admin', 'super_admin']);
+                $isOps = in_array($role, ['operations', 'hub_manager', 'branch_manager']);
+                $isRider = $role === 'delivery_agent';
+                $isAccountant = $role === 'accountant';
+                $isCustomer = in_array($role, ['customer', 'merchant']);
+            @endphp
+
             <div class="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-                <div class="px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Operational Hub</div>
+                @if($isAdmin || $isOps || $isAccountant)
+                <div class="px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Dashboard & Core</div>
                 
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-                    <span>Master Dashboard</span>
+                    <span>
+                        @if($isAccountant) Finance Dashboard
+                        @elseif($isOps) Operations Dashboard
+                        @else Master Dashboard
+                        @endif
+                    </span>
+                </a>
+                @endif
+
+                @if($isCustomer)
+                <!-- Merchant Portal Menu -->
+                <div class="px-3 pb-2 text-[11px] font-semibold text-indigo-400 uppercase tracking-wider">Merchant Portal</div>
+                
+                <a href="{{ route('merchant.portal') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('merchant.portal') ? 'bg-indigo-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="store" class="w-4 h-4 text-indigo-400"></i>
+                    <span>Portal Overview</span>
                 </a>
 
+                <a href="{{ route('shipments.create') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('shipments.create') ? 'bg-indigo-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="plus-circle" class="w-4 h-4"></i>
+                    <span>Book Consignment</span>
+                </a>
+
+                <a href="{{ route('shipments.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('shipments.index', 'shipments.show') ? 'bg-indigo-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="package" class="w-4 h-4"></i>
+                    <span>My Shipments</span>
+                </a>
+
+                <a href="{{ route('cod.settlements') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('cod.settlements') ? 'bg-indigo-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="banknote" class="w-4 h-4"></i>
+                    <span>COD Remittances</span>
+                </a>
+
+                <a href="{{ route('billing.invoices') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('billing.*') ? 'bg-indigo-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="receipt" class="w-4 h-4"></i>
+                    <span>Invoices & Billing</span>
+                </a>
+                @endif
+
+                @if($isRider)
+                <!-- Delivery Rider Menu -->
+                <div class="px-3 pb-2 text-[11px] font-semibold text-emerald-400 uppercase tracking-wider">Field Delivery App</div>
+
+                <a href="{{ route('agent.portal') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('agent.portal') ? 'bg-emerald-600 text-white shadow' : 'text-emerald-400 hover:bg-slate-800 hover:text-emerald-300' }}">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i>
+                    <span>Active Deliveries</span>
+                </a>
+
+                <a href="{{ route('delivery.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('delivery.*') ? 'bg-emerald-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="map-pin" class="w-4 h-4"></i>
+                    <span>Delivery Run Sheets</span>
+                </a>
+
+                <a href="{{ route('cod.collections') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('cod.collections') ? 'bg-emerald-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="banknote" class="w-4 h-4"></i>
+                    <span>My Cash In Hand</span>
+                </a>
+                @endif
+
+                @if($isAdmin || $isOps || $isAccountant)
                 <a href="{{ route('shipments.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('shipments.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="package" class="w-4 h-4"></i>
                     <span>Shipments & AWBs</span>
                 </a>
+                @endif
 
+                @if($isAdmin || $isOps)
                 <a href="{{ route('pickups.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('pickups.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="calendar-check" class="w-4 h-4"></i>
                     <span>Pickup Operations</span>
@@ -83,56 +153,80 @@
 
                 <a href="{{ route('manifests.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('manifests.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="truck" class="w-4 h-4"></i>
-                    <span>Manifest & Dispatch</span>
+                    <span>Manifest & Linehaul</span>
                 </a>
 
-                <div class="pt-4 px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Last-Mile & Financials</div>
+                <div class="pt-4 px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Last-Mile Execution</div>
 
                 <a href="{{ route('delivery.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('delivery.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="map-pin" class="w-4 h-4"></i>
                     <span>Delivery Run Sheets (DRS)</span>
                 </a>
 
-                <a href="{{ route('agent.portal') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('agent.portal') ? 'bg-emerald-600 text-white shadow' : 'text-emerald-400 hover:bg-slate-800 hover:text-emerald-300' }}">
-                    <i data-lucide="smartphone" class="w-4 h-4"></i>
-                    <span>Rider Mobile App</span>
-                </a>
-
-                <a href="{{ route('cod.collections') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('cod.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
-                    <i data-lucide="banknote" class="w-4 h-4"></i>
-                    <span>COD & Settlements</span>
-                </a>
-
                 <a href="{{ route('rto.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('rto.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="rotate-ccw" class="w-4 h-4"></i>
                     <span>Reverse & RTO</span>
                 </a>
+                @endif
 
-                <a href="{{ route('billing.invoices') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('billing.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
-                    <i data-lucide="receipt" class="w-4 h-4"></i>
-                    <span>Invoicing & Ledger</span>
+                @if($isAdmin || $isAccountant)
+                <div class="pt-4 px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Financials & Accounts</div>
+
+                <a href="{{ route('cod.collections') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('cod.collections') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="banknote" class="w-4 h-4"></i>
+                    <span>COD Collections</span>
                 </a>
+
+                <a href="{{ route('cod.settlements') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('cod.settlements') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="calculator" class="w-4 h-4"></i>
+                    <span>Merchant Settlements</span>
+                </a>
+
+                <a href="{{ route('billing.invoices') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('billing.invoices', 'billing.invoice_detail') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="receipt" class="w-4 h-4"></i>
+                    <span>Commercial Invoices</span>
+                </a>
+
+                <a href="{{ route('billing.expenses') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('billing.expenses') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="wallet" class="w-4 h-4"></i>
+                    <span>Fleet & Branch Expenses</span>
+                </a>
+
+                <a href="{{ route('billing.ledger') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('billing.ledger') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
+                    <i data-lucide="book-open" class="w-4 h-4"></i>
+                    <span>General Ledger & COA</span>
+                </a>
+                @endif
+
+                @if($isAdmin)
+                <div class="pt-4 px-3 pb-2 text-[11px] font-semibold text-slate-400 uppercase tracking-wider">Administration</div>
 
                 <a href="{{ route('customers.index') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('customers.*') ? 'bg-blue-600 text-white shadow' : 'hover:bg-slate-800 hover:text-white' }}">
                     <i data-lucide="users" class="w-4 h-4"></i>
                     <span>Customers & Merchants</span>
                 </a>
 
+                <a href="{{ route('agent.portal') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('agent.portal') ? 'bg-emerald-600 text-white shadow' : 'text-emerald-400 hover:bg-slate-800 hover:text-emerald-300' }}">
+                    <i data-lucide="smartphone" class="w-4 h-4"></i>
+                    <span>Rider App Preview</span>
+                </a>
+
                 <a href="{{ route('merchant.portal') }}" class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition {{ request()->routeIs('merchant.portal') ? 'bg-indigo-600 text-white shadow' : 'text-indigo-400 hover:bg-slate-800 hover:text-indigo-300' }}">
                     <i data-lucide="store" class="w-4 h-4"></i>
-                    <span>Merchant Portal</span>
+                    <span>Merchant Portal Preview</span>
                 </a>
+                @endif
             </div>
 
             <!-- User Footer Profile -->
             <div class="p-3 bg-slate-950 border-t border-slate-800 flex items-center justify-between">
                 <div class="flex items-center gap-3 truncate">
                     <div class="w-8 h-8 rounded-full bg-blue-500 text-white font-bold flex items-center justify-center text-xs">
-                        {{ substr(auth()->user()->name ?? 'U', 0, 1) }}
+                        {{ substr($user->name ?? 'U', 0, 1) }}
                     </div>
                     <div class="truncate text-xs">
-                        <div class="font-semibold text-white truncate">{{ auth()->user()->name ?? 'User' }}</div>
-                        <div class="text-slate-400 capitalize">{{ str_replace('_', ' ', auth()->user()->role ?? 'Staff') }}</div>
+                        <div class="font-semibold text-white truncate">{{ $user->name ?? 'User' }}</div>
+                        <div class="text-blue-400 font-semibold capitalize">{{ str_replace('_', ' ', $role) }}</div>
                     </div>
                 </div>
                 <form action="{{ route('logout') }}" method="POST">
@@ -150,20 +244,22 @@
             <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 z-10 no-print">
                 <div class="flex items-center gap-4">
                     <!-- Quick AWB Search -->
-                    <form action="{{ route('tracking.public') }}" method="GET" class="relative w-80">
-                        <input type="text" name="awb" placeholder="Track shipment by AWB..." class="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
+                    <form action="{{ route('tracking.public') }}" method="GET" class="relative w-72 sm:w-80">
+                        <input type="text" name="awb" placeholder="Track consignment by AWB..." class="w-full pl-9 pr-4 py-1.5 text-sm bg-slate-100 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:bg-white transition">
                         <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-2.5"></i>
                     </form>
                 </div>
 
                 <div class="flex items-center gap-3">
+                    @if(! $isRider)
                     <a href="{{ route('shipments.create') }}" class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-sm font-semibold shadow-sm transition">
                         <i data-lucide="plus-circle" class="w-4 h-4"></i>
                         <span>Book Shipment</span>
                     </a>
+                    @endif
                     <a href="{{ route('tracking.public') }}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium transition">
                         <i data-lucide="external-link" class="w-4 h-4"></i>
-                        <span>Public Tracking</span>
+                        <span class="hidden sm:inline">Public Tracking</span>
                     </a>
                 </div>
             </header>

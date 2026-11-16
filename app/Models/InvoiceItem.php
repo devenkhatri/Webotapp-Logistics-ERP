@@ -22,3 +22,4 @@ class InvoiceItem extends Model
         return $this->belongsTo(Shipment::class);
     }
 }
+

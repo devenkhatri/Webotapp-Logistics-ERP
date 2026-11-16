@@ -39,3 +39,4 @@ class Hub extends Model
         return $this->hasMany(Manifest::class, 'destination_hub_id');
     }
 }
+

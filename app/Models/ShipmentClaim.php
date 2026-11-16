@@ -22,3 +22,4 @@ class ShipmentClaim extends Model
         return $this->belongsTo(Shipment::class);
     }
 }
+

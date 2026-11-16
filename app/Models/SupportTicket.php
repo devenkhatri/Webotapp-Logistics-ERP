@@ -28,3 +28,4 @@ class SupportTicket extends Model
         return $this->hasMany(TicketMessage::class);
     }
 }
+

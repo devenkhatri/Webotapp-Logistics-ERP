@@ -22,3 +22,4 @@ class JournalEntry extends Model
         return $this->hasMany(JournalEntryLine::class);
     }
 }
+

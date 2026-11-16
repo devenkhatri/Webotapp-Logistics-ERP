@@ -23,3 +23,4 @@ class RateCard extends Model
         return $this->hasMany(RateSlab::class);
     }
 }
+

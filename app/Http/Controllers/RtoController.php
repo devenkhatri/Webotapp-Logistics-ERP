@@ -32,3 +32,4 @@ class RtoController extends Controller
         return back()->with('success', "RTO {$rto->rto_awb} marked returned and delivered back to merchant!");
     }
 }
+

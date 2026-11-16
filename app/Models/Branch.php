@@ -34,3 +34,4 @@ class Branch extends Model
         return $this->hasMany(Shipment::class);
     }
 }
+
