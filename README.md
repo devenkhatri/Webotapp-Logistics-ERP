@@ -40,7 +40,74 @@
 
 ---
 
-## 🚀 Quick Start Guide
+## 🐳 Docker Quick Start (Recommended)
+
+Run the entire stack (Nginx, PHP 8.3 FPM, MySQL 8, Redis, Queue Worker, and Task Scheduler) using Docker and Docker Compose.
+
+### Prerequisites
+- [Docker](https://docs.docker.com/get-docker/) (v24.0+)
+- [Docker Compose](https://docs.docker.com/compose/) (v2.20+)
+
+### Setup Instructions
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/webotapp-academy/Webotapp-Logistics-ERP.git
+   cd Webotapp-Logistics-ERP
+   ```
+
+2. **Configure Docker environment:**
+   ```bash
+   cp .env.docker.example .env
+   ```
+
+3. **Build and start all containers:**
+   ```bash
+   docker compose up -d --build
+   ```
+
+4. **Initialize application dependencies & application key:**
+   ```bash
+   # Install PHP dependencies inside container
+   docker compose exec app composer install
+
+   # Generate application key
+   docker compose exec app php artisan key:generate
+   ```
+
+5. **Run database migrations and seed data:**
+   ```bash
+   docker compose exec app php artisan migrate --seed
+   ```
+
+6. **Build frontend assets:**
+   ```bash
+   # Install Node dependencies and compile assets
+   docker compose exec app npm install
+   docker compose exec app npm run build
+   ```
+
+7. **Access the application:**
+   Open [http://localhost:8001](http://localhost:8001) in your browser.
+
+---
+
+### Useful Docker Commands
+
+| Action | Command |
+|---|---|
+| **View Service Status** | `docker compose ps` |
+| **Stream Application Logs** | `docker compose logs -f app web` |
+| **Execute Artisan Commands** | `docker compose exec app php artisan <command>` |
+| **Run Automated Tests** | `docker compose exec app php artisan test` |
+| **Open Tinker REPL** | `docker compose exec app php artisan tinker` |
+| **Run Vite Development Server** | `docker compose exec app npm run dev` |
+| **Stop All Services** | `docker compose down` |
+| **Stop and Remove Volumes** | `docker compose down -v` |
+
+---
+
+## 💻 Local Manual Setup Guide
 
 ### Prerequisites
 - PHP 8.2 or higher
