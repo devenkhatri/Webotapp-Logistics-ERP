@@ -69,7 +69,7 @@
                         <span class="w-2 h-2 rounded-full bg-amber-500"></span> Accountant
                     </a>
                     <a href="{{ route('quick.login', 'merchant') }}" class="col-span-2 p-2 rounded bg-slate-900 hover:bg-slate-700 text-slate-300 text-center font-medium border border-slate-750 transition flex items-center justify-center gap-1.5">
-                        <span class="w-2 h-2 rounded-full bg-indigo-500"></span> E-Commerce Merchant Portal (FashionNova)
+                        <span class="w-2 h-2 rounded-full bg-indigo-500"></span> E-Commerce Merchant Portal (FabIndia)
                     </a>
                 </div>
             </div>

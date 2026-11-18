@@ -10,7 +10,7 @@
             <p class="text-sm text-slate-500">Live sorting hub flow, linehaul transit, and delivery dispatch execution</p>
         </div>
 
-        <div class="flex items-center gap-2">
+        <div class="flex flex-wrap items-center gap-2">
             <a href="{{ route('hubs.inbound') }}" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white text-xs font-semibold shadow-sm transition">
                 <i data-lucide="barcode" class="w-4 h-4"></i>
                 <span>Inbound Scan Terminal</span>

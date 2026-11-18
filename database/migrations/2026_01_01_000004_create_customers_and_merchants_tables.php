@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('state')->nullable();
             $table->string('postal_code');
-            $table->string('country')->default('USA');
+            $table->string('country')->default('India');
             $table->boolean('is_default_pickup')->default(false);
             $table->boolean('is_default_delivery')->default(false);
             $table->timestamps();

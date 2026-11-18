@@ -125,7 +125,7 @@
                         <div class="grid grid-cols-2 gap-2">
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">City *</label>
-                                <input type="text" name="receiver_city" value="{{ old('receiver_city', 'Chicago') }}" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-blue-500">
+                                <input type="text" name="receiver_city" value="{{ old('receiver_city', 'New Delhi') }}" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-blue-500">
                             </div>
                             <div>
                                 <label class="block text-xs font-semibold text-slate-600 mb-1">Destination PIN *</label>
@@ -149,7 +149,7 @@
                         </div>
 
                         <div>
-                            <label class="block text-xs font-semibold text-slate-600 mb-1">Declared Value ($)</label>
+                            <label class="block text-xs font-semibold text-slate-600 mb-1">Declared Value (₹)</label>
                             <input type="number" step="0.01" name="declared_value" x-model="declaredValue" @input.debounce.500ms="recalculateRate()" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2 focus:ring-2 focus:ring-blue-500">
                         </div>
 
@@ -209,7 +209,7 @@
                         </div>
 
                         <div x-show="paymentType === 'cod'" x-cloak>
-                            <label class="block text-xs font-semibold text-amber-700 mb-1">COD Amount to Collect ($) *</label>
+                            <label class="block text-xs font-semibold text-amber-700 mb-1">COD Amount to Collect (₹) *</label>
                             <input type="number" step="0.01" name="cod_amount" x-model="codAmount" @input.debounce.500ms="recalculateRate()" class="w-full text-sm bg-amber-50 border border-amber-300 rounded-lg p-2 font-bold text-amber-900 focus:ring-2 focus:ring-amber-500">
                         </div>
                     </div>
@@ -227,23 +227,23 @@
                     <div class="space-y-3 text-sm">
                         <div class="flex justify-between text-slate-600">
                             <span>Base Freight:</span>
-                            <span class="font-medium text-slate-900" x-text="'$' + (quote.base_freight || '0.00')"></span>
+                            <span class="font-medium text-slate-900" x-text="'₹' + (quote.base_freight || '0.00')"></span>
                         </div>
                         <div class="flex justify-between text-slate-600">
                             <span>Fuel Surcharge:</span>
-                            <span class="font-medium text-slate-900" x-text="'$' + (quote.fuel_surcharge || '0.00')"></span>
+                            <span class="font-medium text-slate-900" x-text="'₹' + (quote.fuel_surcharge || '0.00')"></span>
                         </div>
                         <div class="flex justify-between text-slate-600" x-show="quote.cod_fee > 0" x-cloak>
                             <span>COD Handling Fee:</span>
-                            <span class="font-medium text-slate-900" x-text="'$' + (quote.cod_fee || '0.00')"></span>
+                            <span class="font-medium text-slate-900" x-text="'₹' + (quote.cod_fee || '0.00')"></span>
                         </div>
                         <div class="flex justify-between text-slate-600">
                             <span>GST / Tax (18%):</span>
-                            <span class="font-medium text-slate-900" x-text="'$' + (quote.gst_tax || '0.00')"></span>
+                            <span class="font-medium text-slate-900" x-text="'₹' + (quote.gst_tax || '0.00')"></span>
                         </div>
                         <div class="pt-3 border-t border-slate-200 flex justify-between items-baseline">
                             <span class="font-bold text-slate-900">Total Freight:</span>
-                            <span class="text-2xl font-extrabold text-blue-600" x-text="'$' + (quote.total_freight || '0.00')"></span>
+                            <span class="text-2xl font-extrabold text-blue-600" x-text="'₹' + (quote.total_freight || '0.00')"></span>
                         </div>
                     </div>
 
@@ -267,29 +267,29 @@
     function shipmentBooking() {
         return {
             customerId: '',
-            senderName: 'Apex Central Hub',
-            senderPhone: '+1 (212) 555-0101',
-            senderAddress: '100 Broadway, 12th Fl',
-            senderCity: 'New York',
-            senderPin: '10001',
-            receiverPin: '60601',
+            senderName: 'Webotapp Mumbai Central Hub',
+            senderPhone: '+91 22 2650 1000',
+            senderAddress: 'Plot C-59, G Block, BKC',
+            senderCity: 'Mumbai',
+            senderPin: '400051',
+            receiverPin: '110001',
             actualWeight: 1.0,
             length: 20,
             width: 15,
             height: 10,
             volumetricWeight: 0.6,
             chargeableWeight: 1.0,
-            declaredValue: 50.0,
+            declaredValue: 1500.0,
             serviceType: 'standard',
             paymentType: 'prepaid',
             codAmount: 0.0,
             quote: {
                 zone: 'LOCAL',
-                base_freight: '10.00',
-                fuel_surcharge: '0.50',
+                base_freight: '50.00',
+                fuel_surcharge: '2.50',
                 cod_fee: '0.00',
-                gst_tax: '1.89',
-                total_freight: '12.39'
+                gst_tax: '9.45',
+                total_freight: '61.95'
             },
             init() {
                 this.updateWeights();

@@ -20,19 +20,19 @@
     <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Total COD Collected</span>
-            <h3 class="text-2xl font-extrabold text-slate-900 mt-1">${{ number_format($totalCollected, 2) }}</h3>
+            <h3 class="text-2xl font-extrabold text-slate-900 mt-1">₹{{ number_format($totalCollected, 2) }}</h3>
             <span class="text-xs text-slate-500">Across all delivery agents</span>
         </div>
 
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Deposited at Branch</span>
-            <h3 class="text-2xl font-extrabold text-emerald-600 mt-1">${{ number_format($totalDeposited, 2) }}</h3>
+            <h3 class="text-2xl font-extrabold text-emerald-600 mt-1">₹{{ number_format($totalDeposited, 2) }}</h3>
             <span class="text-xs text-emerald-600 font-medium">Verified by cashier</span>
         </div>
 
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Pending Rider Deposit</span>
-            <h3 class="text-2xl font-extrabold text-amber-600 mt-1">${{ number_format($pendingDeposit, 2) }}</h3>
+            <h3 class="text-2xl font-extrabold text-amber-600 mt-1">₹{{ number_format($pendingDeposit, 2) }}</h3>
             <span class="text-xs text-amber-600 font-medium">Cash in hand with riders</span>
         </div>
     </div>
@@ -62,7 +62,7 @@
                             {{ $col->agent->name }}
                         </td>
                         <td class="px-6 py-4 font-bold text-slate-900 text-sm">
-                            ${{ number_format($col->amount, 2) }}
+                            ₹{{ number_format($col->amount, 2) }}
                         </td>
                         <td class="px-6 py-4 uppercase font-bold text-xs text-slate-600">
                             {{ $col->payment_method }}
@@ -102,6 +102,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($collections->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $collections->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

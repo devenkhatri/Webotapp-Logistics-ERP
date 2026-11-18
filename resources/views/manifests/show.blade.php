@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
-    <div class="flex items-center justify-between no-print">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 no-print">
         <div>
             <div class="flex items-center gap-3">
                 <h1 class="text-2xl font-mono font-bold text-slate-900">{{ $manifest->manifest_number }}</h1>
@@ -15,21 +15,21 @@
             <p class="text-xs text-slate-500 mt-1">Linehaul Freight Dispatch Document</p>
         </div>
 
-        <div class="flex items-center gap-2">
-            <button onclick="window.print()" class="px-3.5 py-1.5 bg-slate-800 text-white font-semibold text-xs rounded-lg shadow">
+        <div class="flex flex-wrap items-center gap-2">
+            <button onclick="window.print()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs rounded-lg shadow transition">
                 Print Manifest Sheet
             </button>
             @if($manifest->status === 'draft')
             <form action="{{ route('manifests.dispatch', $manifest->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="px-3.5 py-1.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg shadow">
+                <button type="submit" class="px-3.5 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg shadow transition">
                     Dispatch Vehicle
                 </button>
             </form>
             @elseif($manifest->status === 'dispatched')
             <form action="{{ route('manifests.receive', $manifest->id) }}" method="POST">
                 @csrf
-                <button type="submit" class="px-3.5 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg shadow">
+                <button type="submit" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg shadow transition">
                     Receive Manifest at Destination Hub
                 </button>
             </form>

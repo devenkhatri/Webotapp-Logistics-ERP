@@ -17,7 +17,7 @@ The system features instant 1-click login buttons on `/login` or you can use the
 | **Operations Hub Manager** | `operations@courierx.com` | `password` | Hub Inbound & Sorting Station |
 | **Delivery Rider (Field Agent)** | `rider1@courierx.com` | `password` | Mobile Rider App (`/agent/deliveries`) |
 | **Finance & Accounts** | `finance@courierx.com` | `password` | Invoicing, COD & General Ledger |
-| **Merchant (FashionNova)** | `merchant@fashionnova.demo` | `password` | E-Commerce Merchant Portal (`/portal`) |
+| **Merchant (FabIndia)** | `merchant@fashionnova.demo` | `password` | E-Commerce Merchant Portal (`/portal`) |
 
 ---
 

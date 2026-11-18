@@ -21,10 +21,10 @@
                 </div>
             </div>
 
-            <div class="flex items-center gap-4 text-xs font-semibold">
-                <a href="#tracking" class="text-slate-600 hover:text-blue-600 transition">Track Consignment</a>
-                <a href="#services" class="text-slate-600 hover:text-blue-600 transition">Services</a>
-                <a href="{{ route('login') }}" class="px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition">
+            <div class="flex items-center gap-3 sm:gap-4 text-xs font-semibold">
+                <a href="#tracking" class="hidden sm:inline-block text-slate-600 hover:text-blue-600 transition">Track Consignment</a>
+                <a href="#services" class="hidden sm:inline-block text-slate-600 hover:text-blue-600 transition">Services</a>
+                <a href="{{ route('login') }}" class="px-3.5 sm:px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition">
                     Sign In / Portal
                 </a>
             </div>

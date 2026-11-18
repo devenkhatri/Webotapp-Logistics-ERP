@@ -110,7 +110,7 @@
                             </span>
                             <div class="mt-0.5 font-bold uppercase text-[11px] {{ $s->payment_type === 'cod' ? 'text-amber-600' : 'text-slate-500' }}">
                                 {{ $s->payment_type }}
-                                @if($s->isCod()) (${{ number_format($s->cod_amount, 2) }}) @endif
+                                @if($s->isCod()) (₹{{ number_format($s->cod_amount, 2) }}) @endif
                             </div>
                         </td>
                         <td class="px-6 py-4 text-xs font-medium">
@@ -118,7 +118,7 @@
                             <div class="text-[10px] text-slate-400">{{ $s->pieces_count }} pcs</div>
                         </td>
                         <td class="px-6 py-4 font-bold text-slate-900 text-xs">
-                            ${{ number_format($s->total_freight, 2) }}
+                            ₹{{ number_format($s->total_freight, 2) }}
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border {{ $s->status_badge }}">

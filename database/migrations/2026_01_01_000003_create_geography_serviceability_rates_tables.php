@@ -13,7 +13,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code', 3)->unique(); // USA, IND, GBR
             $table->string('iso2', 2)->unique(); // US, IN, GB
-            $table->string('currency', 3)->default('USD');
+            $table->string('currency', 3)->default('INR');
             $table->string('phone_code', 10)->nullable();
             $table->boolean('is_active')->default(true);
             $table->timestamps();
@@ -34,7 +34,7 @@ return new class extends Migration
             $table->string('code')->index();
             $table->string('city');
             $table->string('state');
-            $table->string('country_code', 3)->default('USA');
+            $table->string('country_code', 3)->default('IND');
             $table->foreignId('zone_id')->nullable()->constrained('service_zones')->nullOnDelete();
             $table->boolean('is_pickup_serviceable')->default(true);
             $table->boolean('is_delivery_serviceable')->default(true);

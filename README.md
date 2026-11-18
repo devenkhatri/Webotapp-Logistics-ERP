@@ -94,13 +94,13 @@
 
 The database seeder provisions pre-configured accounts for testing each operational role:
 
-| Role | Email | Password | Access Area |
-|---|---|---|---|
-| **Super Admin** | `admin@webotapp.com` | `password` | Executive Dashboard (`/dashboard`) |
-| **Hub Manager** | `ops@webotapp.com` | `password` | Hub & Linehaul Operations (`/dashboard`) |
-| **Delivery Rider** | `rider@webotapp.com` | `password` | Rider Delivery Portal (`/agent/deliveries`) |
-| **Accountant** | `finance@webotapp.com` | `password` | Accounting & Invoicing (`/dashboard`) |
-| **Merchant** | `merchant@acme.com` | `password` | Merchant Self-Service Portal (`/portal`) |
+| Role | Name | Email | Password | Access Area |
+|---|---|---|---|---|
+| **Super Admin** | Vikramaditya Singhania | `admin@courierx.com` | `password` | Master Operations Dashboard (`/dashboard`) |
+| **Hub Manager** | Priya Sharma | `operations@courierx.com` | `password` | Hub Inbound & Operations (`/dashboard`) |
+| **Delivery Rider** | Rajesh Kumar | `rider1@courierx.com` | `password` | Rider Mobile Portal (`/agent/deliveries`) |
+| **Accountant** | Anita Desai | `finance@courierx.com` | `password` | Invoicing, COD & Ledger (`/billing/invoices`) |
+| **Merchant** | Rohan Mehra (FabIndia) | `merchant@fashionnova.demo` | `password` | Merchant Portal (`/portal`) |
 
 *(Quick-login buttons are also available on the `/login` page for fast role switching during testing.)*
 

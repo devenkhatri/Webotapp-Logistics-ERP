@@ -46,7 +46,7 @@ class BillingController extends Controller
             return back()->with('error', "No unbilled shipments found for {$customer->name}.");
         }
 
-        return back()->with('success', "Invoice {$invoice->invoice_number} generated for \${$invoice->total_amount}!");
+        return back()->with('success', "Invoice {$invoice->invoice_number} generated for ₹{$invoice->total_amount}!");
     }
 
     public function showInvoice($id)
@@ -92,7 +92,7 @@ class BillingController extends Controller
 
         Expense::create($validated);
 
-        return back()->with('success', "Expense of \${$validated['amount']} recorded successfully.");
+        return back()->with('success', "Expense of ₹{$validated['amount']} recorded successfully.");
     }
 
     public function ledger()

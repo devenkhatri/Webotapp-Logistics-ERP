@@ -82,7 +82,7 @@
                             <td class="p-3">
                                 <span class="uppercase font-bold {{ $s->payment_type === 'cod' ? 'text-amber-600' : 'text-slate-600' }}">
                                     {{ $s->payment_type }}
-                                    @if($s->isCod()) (${{ number_format($s->cod_amount, 2) }}) @endif
+                                    @if($s->isCod()) (₹{{ number_format($s->cod_amount, 2) }}) @endif
                                 </span>
                             </td>
                             <td class="p-3 font-bold">{{ $s->chargeable_weight }} kg</td>

@@ -34,13 +34,13 @@
 
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">COD Collected in Escrow</span>
-            <h3 class="text-2xl font-extrabold text-amber-600 mt-1">${{ number_format($codCollected, 2) }}</h3>
+            <h3 class="text-2xl font-extrabold text-amber-600 mt-1">₹{{ number_format($codCollected, 2) }}</h3>
             <span class="text-xs text-amber-600 font-medium">Ready for remittance payout</span>
         </div>
 
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Credit Balance</span>
-            <h3 class="text-2xl font-extrabold text-slate-900 mt-1">${{ number_format($customer->credit_limit ?? 25000, 2) }}</h3>
+            <h3 class="text-2xl font-extrabold text-slate-900 mt-1">₹{{ number_format($customer->credit_limit ?? 25000, 2) }}</h3>
             <span class="text-xs text-slate-500">Cycle: {{ ucfirst($customer->billing_cycle ?? 'weekly') }}</span>
         </div>
     </div>
@@ -98,7 +98,7 @@
                         <td class="p-3">{{ $s->receiver_city }} ({{ $s->receiver_postal_code }})</td>
                         <td class="p-3">
                             <span class="uppercase font-bold {{ $s->payment_type === 'cod' ? 'text-amber-600' : 'text-slate-500' }}">
-                                {{ $s->payment_type }} @if($s->isCod()) (${{ number_format($s->cod_amount, 2) }}) @endif
+                                {{ $s->payment_type }} @if($s->isCod()) (₹{{ number_format($s->cod_amount, 2) }}) @endif
                             </span>
                         </td>
                         <td class="p-3">
@@ -117,6 +117,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($shipments->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $shipments->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

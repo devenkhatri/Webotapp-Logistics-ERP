@@ -63,8 +63,8 @@
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm flex items-center justify-between">
             <div>
                 <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Freight Revenue</p>
-                <h3 class="text-2xl font-extrabold text-slate-900 mt-1">${{ number_format($totalRevenue, 2) }}</h3>
-                <span class="text-xs text-amber-600 font-medium">COD Coll: ${{ number_format($totalCodCollected, 2) }}</span>
+                <h3 class="text-2xl font-extrabold text-slate-900 mt-1">₹{{ number_format($totalRevenue, 2) }}</h3>
+                <span class="text-xs text-amber-600 font-medium">COD Coll: ₹{{ number_format($totalCodCollected, 2) }}</span>
             </div>
             <div class="w-12 h-12 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center">
                 <i data-lucide="banknote" class="w-6 h-6"></i>
@@ -183,7 +183,7 @@
                             {{ $s->chargeable_weight }} kg
                         </td>
                         <td class="px-6 py-3.5 font-bold text-slate-900">
-                            ${{ number_format($s->total_freight, 2) }}
+                            ₹{{ number_format($s->total_freight, 2) }}
                         </td>
                         <td class="px-6 py-3.5">
                             <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border {{ $s->status_badge }}">

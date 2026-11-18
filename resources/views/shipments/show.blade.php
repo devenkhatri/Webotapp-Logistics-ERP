@@ -18,16 +18,16 @@
             </p>
         </div>
 
-        <div class="flex items-center gap-2">
-            <a href="{{ route('shipments.label', $shipment->id) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition">
+        <div class="flex flex-wrap items-center gap-2">
+            <a href="{{ route('shipments.label', $shipment->id) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-white text-xs font-semibold shadow-sm transition">
                 <i data-lucide="printer" class="w-4 h-4"></i>
-                <span>Thermal Label (4x6)</span>
+                <span>Thermal Label</span>
             </a>
-            <a href="{{ route('shipments.invoice', $shipment->id) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-sm transition">
+            <a href="{{ route('shipments.invoice', $shipment->id) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-white border border-slate-200 hover:bg-slate-50 text-slate-700 text-xs font-semibold shadow-sm transition">
                 <i data-lucide="file-text" class="w-4 h-4"></i>
-                <span>Waybill Invoice</span>
+                <span>Invoice</span>
             </a>
-            <a href="{{ route('tracking.public', $shipment->awb_number) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-semibold transition">
+            <a href="{{ route('tracking.public', $shipment->awb_number) }}" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-blue-50 text-blue-700 hover:bg-blue-100 text-xs font-semibold transition">
                 <i data-lucide="external-link" class="w-4 h-4"></i>
                 <span>Track</span>
             </a>
@@ -125,20 +125,20 @@
                     </div>
                     <div>
                         <span class="text-slate-500 block">Declared Value</span>
-                        <strong class="text-slate-900 text-sm">${{ number_format($shipment->declared_value, 2) }}</strong>
+                        <strong class="text-slate-900 text-sm">₹{{ number_format($shipment->declared_value, 2) }}</strong>
                     </div>
                     <div>
                         <span class="text-slate-500 block">COD Collectable</span>
-                        <strong class="text-amber-600 font-bold text-sm">${{ number_format($shipment->cod_amount, 2) }}</strong>
+                        <strong class="text-amber-600 font-bold text-sm">₹{{ number_format($shipment->cod_amount, 2) }}</strong>
                     </div>
                     <div>
                         <span class="text-slate-500 block">Total Freight Amount</span>
-                        <strong class="text-blue-600 font-extrabold text-sm">${{ number_format($shipment->total_freight, 2) }}</strong>
+                        <strong class="text-blue-600 font-extrabold text-sm">₹{{ number_format($shipment->total_freight, 2) }}</strong>
                     </div>
                 </div>
 
                 <div class="pt-3 border-t border-slate-100 flex flex-wrap items-center justify-between text-xs text-slate-500">
-                    <div>Base: ${{ number_format($shipment->base_freight, 2) }} | Fuel: ${{ number_format($shipment->fuel_surcharge, 2) }} | COD Fee: ${{ number_format($shipment->cod_fee, 2) }} | Tax: ${{ number_format($shipment->gst_tax, 2) }}</div>
+                    <div>Base: ₹{{ number_format($shipment->base_freight, 2) }} | Fuel: ₹{{ number_format($shipment->fuel_surcharge, 2) }} | COD Fee: ₹{{ number_format($shipment->cod_fee, 2) }} | Tax: ₹{{ number_format($shipment->gst_tax, 2) }}</div>
                     <div>Status: <span class="capitalize font-bold text-slate-700">{{ $shipment->payment_status }}</span></div>
                 </div>
             </div>
@@ -217,7 +217,7 @@
 
                     <div>
                         <label class="block font-semibold text-slate-600 mb-1">Current Location (Optional)</label>
-                        <input type="text" name="location" placeholder="e.g. JFK Hub, NYC" class="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-2 focus:ring-blue-500">
+                        <input type="text" name="location" placeholder="e.g. Mumbai Gateway Hub, BOM" class="w-full p-2 bg-slate-50 border border-slate-200 rounded-lg text-xs focus:ring-2 focus:ring-blue-500">
                     </div>
 
                     <div>

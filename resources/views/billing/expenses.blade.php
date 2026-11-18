@@ -24,7 +24,7 @@
     <!-- Summary Total Card -->
     <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm max-w-sm">
         <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Total Recorded Expenses</span>
-        <h3 class="text-2xl font-extrabold text-rose-600 mt-1">${{ number_format($totalExpenses, 2) }}</h3>
+        <h3 class="text-2xl font-extrabold text-rose-600 mt-1">₹{{ number_format($totalExpenses, 2) }}</h3>
         <span class="text-xs text-slate-500">Operational overheads</span>
     </div>
 
@@ -60,7 +60,7 @@
                             {{ $exp->description }}
                         </td>
                         <td class="px-6 py-4 font-bold text-rose-600 text-sm">
-                            ${{ number_format($exp->amount, 2) }}
+                            ₹{{ number_format($exp->amount, 2) }}
                         </td>
                         <td class="px-6 py-4 text-right text-xs text-slate-400">
                             {{ $exp->approvedBy->name ?? 'Staff' }}
@@ -74,6 +74,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($expenses->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $expenses->links() }}
+        </div>
+        @endif
     </div>
 
     <!-- Modal: Record Expense -->
@@ -109,7 +115,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">Amount ($) *</label>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Amount (₹) *</label>
                     <input type="number" step="0.01" name="amount" required placeholder="0.00" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-bold">
                 </div>
 

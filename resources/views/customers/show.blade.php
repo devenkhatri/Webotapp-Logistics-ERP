@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
             <div class="flex items-center gap-3">
                 <h1 class="text-2xl font-bold tracking-tight text-slate-900">{{ $customer->name }}</h1>
@@ -52,7 +52,7 @@
 
         <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
             <span class="text-xs font-semibold text-slate-400 uppercase tracking-wider block">Approved Credit Limit</span>
-            <strong class="text-slate-900 text-base mt-1 block">${{ number_format($customer->credit_limit, 2) }}</strong>
+            <strong class="text-slate-900 text-base mt-1 block">₹{{ number_format($customer->credit_limit, 2) }}</strong>
             <span class="text-xs text-slate-500">Billing Cycle: {{ ucfirst($customer->billing_cycle) }}</span>
         </div>
 
@@ -93,7 +93,7 @@
                             <span class="font-bold text-slate-800">{{ $s->receiver_name }}</span> ({{ $s->receiver_city }})
                         </td>
                         <td class="p-3 uppercase font-semibold">{{ $s->payment_type }}</td>
-                        <td class="p-3 text-right font-bold text-slate-900">${{ number_format($s->total_freight, 2) }}</td>
+                        <td class="p-3 text-right font-bold text-slate-900">₹{{ number_format($s->total_freight, 2) }}</td>
                         <td class="p-3 text-right">
                             <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase {{ $s->status_badge }}">{{ $s->status }}</span>
                         </td>

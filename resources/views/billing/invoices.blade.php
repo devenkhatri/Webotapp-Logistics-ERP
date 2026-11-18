@@ -73,13 +73,13 @@
                             {{ $inv->due_date->format('d M Y') }}
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-slate-800">
-                            ${{ number_format($inv->subtotal, 2) }}
+                            ₹{{ number_format($inv->subtotal, 2) }}
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-slate-500">
-                            ${{ number_format($inv->tax_amount, 2) }}
+                            ₹{{ number_format($inv->tax_amount, 2) }}
                         </td>
                         <td class="px-6 py-4 font-extrabold text-slate-900 text-sm">
-                            ${{ number_format($inv->total_amount, 2) }}
+                            ₹{{ number_format($inv->total_amount, 2) }}
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase {{ $inv->payment_status === 'paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800' }}">
@@ -100,6 +100,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($invoices->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $invoices->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

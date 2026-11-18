@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
             <h1 class="text-2xl font-bold tracking-tight text-slate-900">General Ledger & Double-Entry Accounting</h1>
             <p class="text-sm text-slate-500">Corporate balance sheet accounts, freight revenue recognition, and escrow audit</p>
@@ -36,7 +36,7 @@
                         <td class="px-6 py-3 font-semibold text-slate-800">{{ $acc->account_name }}</td>
                         <td class="px-6 py-3 uppercase text-[10px] font-bold text-slate-500">{{ $acc->account_type }}</td>
                         <td class="px-6 py-3 text-right font-bold text-sm text-slate-900">
-                            ${{ number_format($acc->current_balance, 2) }}
+                            ₹{{ number_format($acc->current_balance, 2) }}
                         </td>
                     </tr>
                     @empty
@@ -59,12 +59,12 @@
         <div class="divide-y divide-slate-100 text-xs">
             @forelse($recentJournalEntries as $je)
             <div class="p-5 space-y-2">
-                <div class="flex items-center justify-between">
+                <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1">
                     <div>
                         <span class="font-mono font-bold text-blue-600">{{ $je->entry_number }}</span>
                         <span class="text-slate-400 ml-2">{{ $je->entry_date->format('d M Y') }}</span>
                     </div>
-                    <span class="font-medium text-slate-700">{{ $je->description }}</span>
+                    <span class="font-medium text-slate-700 text-xs">{{ $je->description }}</span>
                 </div>
 
                 <div class="bg-slate-50 p-3 rounded-lg border border-slate-200 space-y-1">
@@ -75,9 +75,9 @@
                         </span>
                         <div>
                             @if($line->debit > 0)
-                                <span class="font-bold text-slate-900">Dr: ${{ number_format($line->debit, 2) }}</span>
+                                <span class="font-bold text-slate-900">Dr: ₹{{ number_format($line->debit, 2) }}</span>
                             @else
-                                <span class="font-bold text-slate-600">Cr: ${{ number_format($line->credit, 2) }}</span>
+                                <span class="font-bold text-slate-600">Cr: ₹{{ number_format($line->credit, 2) }}</span>
                             @endif
                         </div>
                     </div>

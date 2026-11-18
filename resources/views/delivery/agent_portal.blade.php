@@ -23,7 +23,7 @@
             <div class="text-right">
                 <div class="text-[10px] uppercase font-bold text-slate-400">Cash in Hand</div>
                 <div class="text-lg font-mono font-extrabold text-amber-400">
-                    ${{ number_format($deliveredToday->where('payment_type', 'cod')->sum('cod_amount'), 2) }}
+                    ₹{{ number_format($deliveredToday->where('payment_type', 'cod')->sum('cod_amount'), 2) }}
                 </div>
             </div>
         </div>
@@ -52,7 +52,7 @@
             <div class="flex items-center justify-between">
                 <span class="font-mono font-extrabold text-blue-600 text-sm">{{ $s->awb_number }}</span>
                 <span class="px-2 py-0.5 rounded text-xs font-extrabold uppercase {{ $s->payment_type === 'cod' ? 'bg-amber-100 text-amber-800' : 'bg-slate-100 text-slate-700' }}">
-                    {{ $s->payment_type }} @if($s->isCod()) - ${{ number_format($s->cod_amount, 2) }} @endif
+                    {{ $s->payment_type }} @if($s->isCod()) - ₹{{ number_format($s->cod_amount, 2) }} @endif
                 </span>
             </div>
 
@@ -135,7 +135,7 @@
 
                 <template x-if="activeShipment.isCod">
                     <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 space-y-2">
-                        <div class="text-xs font-bold text-amber-900">Collect Cash on Delivery: $<span x-text="activeShipment.codAmount"></span></div>
+                        <div class="text-xs font-bold text-amber-900">Collect Cash on Delivery: ₹<span x-text="activeShipment.codAmount"></span></div>
                         <select name="payment_method" class="w-full text-xs bg-white border border-amber-300 rounded p-1.5">
                             <option value="cash">Collected Cash</option>
                             <option value="upi">Collected UPI / QR</option>

@@ -12,8 +12,8 @@
         }
     </style>
 </head>
-<body class="bg-slate-100 p-8 text-slate-800 text-sm">
-    <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl border border-slate-300 shadow-sm space-y-6">
+<body class="bg-slate-100 p-3 sm:p-8 text-slate-800 text-sm">
+    <div class="max-w-4xl mx-auto bg-white p-4 sm:p-8 rounded-xl border border-slate-300 shadow-sm space-y-6">
         <!-- Print Button -->
         <div class="flex justify-end no-print">
             <button onclick="window.print()" class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-lg text-xs shadow">
@@ -22,17 +22,17 @@
         </div>
 
         <!-- Header -->
-        <div class="flex justify-between items-start border-b border-slate-200 pb-6">
+        <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-4 border-b border-slate-200 pb-6">
             <div>
-                <h1 class="text-2xl font-black tracking-tight text-blue-900">APEX LOGISTICS EXPRESS</h1>
+                <h1 class="text-xl sm:text-2xl font-black tracking-tight text-blue-900">WEBOTAPP LOGISTICS EXPRESS INDIA</h1>
                 <p class="text-xs text-slate-500">Commercial Consignment Note & Tax Waybill</p>
                 <div class="text-xs text-slate-600 mt-2">
-                    Head Office: 100 Broadway, 12th Floor, New York, NY 10001<br>
-                    Tax ID / EIN: US-EIN-987654321 • Support: +1 (800) 555-0199
+                    Head Office: Plot No. C-59, G Block, Bandra Kurla Complex (BKC), Mumbai, Maharashtra 400051<br>
+                    GSTIN: 27AAACW1234F1Z5 • Support: +91 22 2650 1000
                 </div>
             </div>
 
-            <div class="text-right">
+            <div class="sm:text-right">
                 <div class="text-lg font-mono font-extrabold text-slate-900">{{ $shipment->awb_number }}</div>
                 <div class="text-xs text-slate-500 mt-1">Date: {{ $shipment->created_at->format('d M Y, h:i A') }}</div>
                 <div class="mt-2 inline-block px-2.5 py-1 bg-slate-100 rounded text-xs font-bold uppercase">
@@ -42,7 +42,7 @@
         </div>
 
         <!-- Shipper & Consignee -->
-        <div class="grid grid-cols-2 gap-6 border-b border-slate-200 pb-6">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 border-b border-slate-200 pb-6">
             <div class="p-4 bg-slate-50 rounded-lg">
                 <h3 class="text-xs font-bold uppercase text-slate-400 tracking-wider mb-2">Shipper Details</h3>
                 <div class="font-bold text-slate-900">{{ $shipment->sender_name }}</div>
@@ -81,7 +81,7 @@
                         <td class="p-2.5 text-right">{{ $shipment->actual_weight }} kg</td>
                         <td class="p-2.5 text-right">{{ $shipment->volumetric_weight }} kg</td>
                         <td class="p-2.5 text-right font-bold">{{ $shipment->chargeable_weight }} kg</td>
-                        <td class="p-2.5 text-right font-bold">${{ number_format($shipment->base_freight, 2) }}</td>
+                        <td class="p-2.5 text-right font-bold">₹{{ number_format($shipment->base_freight, 2) }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -92,29 +92,29 @@
             <div class="w-72 space-y-2 text-xs">
                 <div class="flex justify-between text-slate-600">
                     <span>Base Freight:</span>
-                    <span>${{ number_format($shipment->base_freight, 2) }}</span>
+                    <span>₹{{ number_format($shipment->base_freight, 2) }}</span>
                 </div>
                 <div class="flex justify-between text-slate-600">
                     <span>Fuel Surcharge:</span>
-                    <span>${{ number_format($shipment->fuel_surcharge, 2) }}</span>
+                    <span>₹{{ number_format($shipment->fuel_surcharge, 2) }}</span>
                 </div>
                 @if($shipment->cod_fee > 0)
                 <div class="flex justify-between text-slate-600">
                     <span>COD Fee:</span>
-                    <span>${{ number_format($shipment->cod_fee, 2) }}</span>
+                    <span>₹{{ number_format($shipment->cod_fee, 2) }}</span>
                 </div>
                 @endif
                 <div class="flex justify-between text-slate-600">
                     <span>Tax (GST 18%):</span>
-                    <span>${{ number_format($shipment->gst_tax, 2) }}</span>
+                    <span>₹{{ number_format($shipment->gst_tax, 2) }}</span>
                 </div>
                 <div class="flex justify-between font-bold text-slate-900 border-t border-slate-200 pt-2 text-sm">
                     <span>Grand Total:</span>
-                    <span>${{ number_format($shipment->total_freight, 2) }}</span>
+                    <span>₹{{ number_format($shipment->total_freight, 2) }}</span>
                 </div>
                 @if($shipment->isCod())
                 <div class="p-2 bg-amber-50 border border-amber-200 rounded text-amber-900 font-bold text-center mt-2">
-                    COD to Collect: ${{ number_format($shipment->cod_amount, 2) }}
+                    COD to Collect: ₹{{ number_format($shipment->cod_amount, 2) }}
                 </div>
                 @endif
             </div>

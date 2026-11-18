@@ -17,13 +17,13 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('email')->nullable();
             $table->string('phone')->nullable();
-            $table->string('currency')->default('USD');
-            $table->string('currency_symbol')->default('$');
+            $table->string('currency')->default('INR');
+            $table->string('currency_symbol')->default('₹');
             $table->text('address')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
-            $table->string('country')->default('USA');
+            $table->string('country')->default('India');
             $table->string('tax_number')->nullable();
             $table->string('logo')->nullable();
             $table->string('status')->default('active'); // active, suspended, inactive
@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('city');
             $table->string('state')->nullable();
             $table->string('postal_code')->nullable();
-            $table->string('country')->default('USA');
+            $table->string('country')->default('India');
             $table->boolean('is_head_office')->default(false);
             $table->string('status')->default('active');
             $table->timestamps();

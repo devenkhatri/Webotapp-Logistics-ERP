@@ -19,6 +19,7 @@
         }
         .label-container {
             width: 4in;
+            max-width: 100%;
             min-height: 6in;
             background: #fff;
             border: 2px solid #000;
@@ -27,6 +28,11 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+        }
+        @media screen and (max-width: 440px) {
+            body {
+                padding: 6px;
+            }
         }
         .header {
             display: flex;
@@ -213,13 +219,13 @@
         <div class="footer-metrics">
             <div>Weight: <strong>{{ $shipment->chargeable_weight }} kg</strong></div>
             <div>Mode: <strong>{{ strtoupper($shipment->payment_type) }}</strong></div>
-            <div>Declared: <strong>${{ number_format($shipment->declared_value, 2) }}</strong></div>
+            <div>Declared: <strong>₹{{ number_format($shipment->declared_value, 2) }}</strong></div>
         </div>
 
         <!-- COD or Verification Banner -->
         @if($shipment->isCod() && $shipment->cod_amount > 0)
         <div class="cod-banner">
-            COLLECT CASH ON DELIVERY: ${{ number_format($shipment->cod_amount, 2) }}
+            COLLECT CASH ON DELIVERY: ₹{{ number_format($shipment->cod_amount, 2) }}
         </div>
         @else
         <div style="text-align: center; padding: 4px; font-size: 10px; font-weight: bold; border-top: 1px solid #000;">

@@ -57,7 +57,7 @@
                             {{ $c->rateCard->name ?? 'Default Tariff' }}
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-slate-800">
-                            ${{ number_format($c->credit_limit, 2) }}
+                            ₹{{ number_format($c->credit_limit, 2) }}
                         </td>
                         <td class="px-6 py-4 text-xs font-extrabold text-blue-600">
                             {{ $c->shipments_count }} pkgs
@@ -76,6 +76,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($customers->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $customers->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

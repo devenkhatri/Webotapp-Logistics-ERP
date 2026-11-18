@@ -71,6 +71,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($rtoRecords->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $rtoRecords->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

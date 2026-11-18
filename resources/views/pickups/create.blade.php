@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
             <h1 class="text-2xl font-bold tracking-tight text-slate-900">Schedule Pickup Request</h1>
             <p class="text-sm text-slate-500">Request field pickup agent visit to customer / merchant warehouse</p>
@@ -48,12 +48,12 @@
 
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">City *</label>
-                <input type="text" name="city" value="New York" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                <input type="text" name="city" value="Mumbai" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
             </div>
 
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">Postal Code (PIN) *</label>
-                <input type="text" name="postal_code" value="10001" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                <input type="text" name="postal_code" value="400051" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
             </div>
 
             <div>

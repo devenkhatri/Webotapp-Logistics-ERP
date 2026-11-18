@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-4xl mx-auto space-y-6">
-    <div class="flex items-center justify-between">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
         <div>
             <h1 class="text-2xl font-bold tracking-tight text-slate-900">Hub Inbound Scan Terminal</h1>
             <p class="text-sm text-slate-500">Scan incoming consignments or linehaul bags arriving at this sorting facility</p>

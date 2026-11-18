@@ -3,22 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Public Consignment Tracking - Apex Logistics</title>
+    <title>Public Consignment Tracking - Webotapp Logistics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
 </head>
 <body class="bg-slate-100 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
     <!-- Navbar -->
-    <header class="bg-white border-b border-slate-200 py-4 px-6 shadow-sm">
+    <header class="bg-white border-b border-slate-200 py-3.5 px-4 sm:px-6 shadow-sm">
         <div class="max-w-5xl mx-auto flex items-center justify-between">
             <a href="{{ route('home') }}" class="flex items-center gap-2">
                 <div class="h-8 w-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow">▲</div>
-                <span class="font-extrabold text-slate-900 tracking-tight text-lg">Apex Logistics</span>
+                <span class="font-extrabold text-slate-900 tracking-tight text-base sm:text-lg">Webotapp Logistics</span>
             </a>
 
-            <div class="flex items-center gap-4 text-xs font-semibold">
-                <a href="{{ route('home') }}" class="text-slate-600 hover:text-blue-600 transition">Home</a>
-                <a href="{{ route('login') }}" class="px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm">Operations Login</a>
+            <div class="flex items-center gap-2 sm:gap-4 text-xs font-semibold">
+                <a href="{{ route('home') }}" class="hidden sm:inline-block text-slate-600 hover:text-blue-600 transition">Home</a>
+                <a href="{{ route('login') }}" class="px-3 sm:px-3.5 py-1.5 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition shadow-sm">Operations Login</a>
             </div>
         </div>
     </header>
@@ -30,14 +30,14 @@
             <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight">Live Consignment Tracking</h1>
             <p class="text-sm text-slate-500">Enter your Air Waybill (AWB) or Merchant Order Reference Number</p>
 
-            <form action="{{ route('tracking.public') }}" method="GET" class="max-w-lg mx-auto flex gap-2 pt-2">
+            <form action="{{ route('tracking.public') }}" method="GET" class="max-w-lg mx-auto flex flex-col sm:flex-row gap-2 pt-2">
                 <div class="relative flex-1">
                     <input type="text" name="awb" value="{{ $searchAwb }}" placeholder="e.g. CX100001, CX100004..." required class="w-full pl-10 pr-4 py-3 bg-white border border-slate-300 rounded-xl font-mono text-sm uppercase focus:outline-none focus:ring-2 focus:ring-blue-600 shadow-sm transition">
                     <i data-lucide="package" class="w-5 h-5 text-slate-400 absolute left-3 top-3.5"></i>
                 </div>
-                <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center gap-1.5">
+                <button type="submit" class="px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold text-sm rounded-xl shadow-md transition flex items-center justify-center gap-1.5">
                     <i data-lucide="search" class="w-4 h-4"></i>
-                    <span>Track</span>
+                    <span>Track Consignment</span>
                 </button>
             </form>
         </div>
@@ -151,7 +151,7 @@
 
     <!-- Footer -->
     <footer class="bg-white border-t border-slate-200 py-6 text-center text-xs text-slate-500">
-        © {{ date('Y') }} Apex Logistics Express Inc. All rights reserved. • Support Hotline: +1 (800) 555-0199
+        © {{ date('Y') }} Webotapp Logistics ERP. All rights reserved. • Support Hotline: +91 1800 200 8899
     </footer>
 
     <script>lucide.createIcons();</script>

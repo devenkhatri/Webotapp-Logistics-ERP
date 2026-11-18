@@ -62,8 +62,8 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-amber-700">
-                            ${{ number_format($run->total_cod_to_collect, 2) }}
-                            <div class="text-[10px] text-slate-400 font-normal">Coll: ${{ number_format($run->total_cod_collected, 2) }}</div>
+                            ₹{{ number_format($run->total_cod_to_collect, 2) }}
+                            <div class="text-[10px] text-slate-400 font-normal">Coll: ₹{{ number_format($run->total_cod_collected, 2) }}</div>
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold capitalize {{ $run->status === 'completed' ? 'bg-emerald-100 text-emerald-800' : 'bg-orange-100 text-orange-800' }}">
@@ -84,6 +84,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($runs->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $runs->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

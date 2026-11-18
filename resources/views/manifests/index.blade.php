@@ -83,6 +83,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($manifests->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $manifests->links() }}
+        </div>
+        @endif
     </div>
 </div>
 @endsection

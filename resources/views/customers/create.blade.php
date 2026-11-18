@@ -42,7 +42,7 @@
 
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">Company / Store Name</label>
-                <input type="text" name="company_name" placeholder="e.g. Acme Online Store Inc." class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                <input type="text" name="company_name" placeholder="e.g. FabIndia Retail Pvt. Ltd." class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
             </div>
 
             <div>
@@ -57,11 +57,11 @@
 
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">Tax ID / GST Number</label>
-                <input type="text" name="gst_number" placeholder="e.g. US-TAX-12345" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                <input type="text" name="gst_number" placeholder="e.g. 27AAACW1234F1Z5" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
             </div>
 
             <div>
-                <label class="block text-xs font-semibold text-slate-600 mb-1">Credit Limit ($)</label>
+                <label class="block text-xs font-semibold text-slate-600 mb-1">Credit Limit (₹)</label>
                 <input type="number" step="0.01" name="credit_limit" value="0.00" class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5 font-bold">
             </div>
 
@@ -72,12 +72,12 @@
 
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">City *</label>
-                <input type="text" name="city" value="New York" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                <input type="text" name="city" value="Mumbai" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
             </div>
 
             <div>
                 <label class="block text-xs font-semibold text-slate-600 mb-1">Postal Code (PIN) *</label>
-                <input type="text" name="postal_code" value="10001" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
+                <input type="text" name="postal_code" value="400051" required class="w-full text-sm bg-slate-50 border border-slate-200 rounded-lg p-2.5">
             </div>
         </div>
 

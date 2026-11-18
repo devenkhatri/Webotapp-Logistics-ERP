@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="max-w-5xl mx-auto space-y-6">
-    <div class="flex items-center justify-between no-print">
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 no-print">
         <div>
             <div class="flex items-center gap-3">
                 <h1 class="text-2xl font-mono font-bold text-slate-900">{{ $run->run_sheet_number }}</h1>
@@ -15,11 +15,11 @@
             <p class="text-xs text-slate-500 mt-1">Delivery Run Sheet (DRS) & Proof Manifest</p>
         </div>
 
-        <div class="flex items-center gap-2">
-            <button onclick="window.print()" class="px-3.5 py-1.5 bg-slate-800 text-white font-semibold text-xs rounded-lg shadow">
+        <div class="flex flex-wrap items-center gap-2">
+            <button onclick="window.print()" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold text-xs rounded-lg shadow transition">
                 Print Run Sheet
             </button>
-            <a href="{{ route('agent.portal') }}" class="px-3.5 py-1.5 bg-emerald-600 text-white font-bold text-xs rounded-lg shadow">
+            <a href="{{ route('agent.portal') }}" class="px-3.5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg shadow transition">
                 Open in Rider Mobile View
             </a>
         </div>
@@ -55,7 +55,7 @@
             </div>
             <div>
                 <span class="text-slate-400 block uppercase font-bold text-[10px]">COD Collectable</span>
-                <strong class="text-amber-700 text-sm">${{ number_format($run->total_cod_to_collect, 2) }}</strong>
+                <strong class="text-amber-700 text-sm">₹{{ number_format($run->total_cod_to_collect, 2) }}</strong>
             </div>
         </div>
 
@@ -85,7 +85,7 @@
                         </td>
                         <td class="p-2.5 font-mono">{{ $s->receiver_phone }}</td>
                         <td class="p-2.5 text-right font-bold text-amber-700">
-                            {{ $s->isCod() ? '$' . number_format($s->cod_amount, 2) : 'PREPAID' }}
+                            {{ $s->isCod() ? '₹' . number_format($s->cod_amount, 2) : 'PREPAID' }}
                         </td>
                         <td class="p-2.5 text-center">
                             <span class="px-2 py-0.5 rounded text-[10px] font-bold uppercase {{ $s->status === 'delivered' ? 'bg-emerald-100 text-emerald-800' : ($s->status === 'failed_attempt' ? 'bg-rose-100 text-rose-800' : 'bg-slate-100 text-slate-700') }}">

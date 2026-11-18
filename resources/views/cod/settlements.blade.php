@@ -59,13 +59,13 @@
                             <div class="text-[11px] text-slate-400 font-normal">{{ $set->customer->account_number }}</div>
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-slate-800">
-                            ${{ number_format($set->total_cod_amount, 2) }}
+                            ₹{{ number_format($set->total_cod_amount, 2) }}
                         </td>
                         <td class="px-6 py-4 text-xs font-bold text-rose-600">
-                            -${{ number_format($set->total_deductions, 2) }}
+                            -₹{{ number_format($set->total_deductions, 2) }}
                         </td>
                         <td class="px-6 py-4 font-extrabold text-emerald-600 text-sm">
-                            ${{ number_format($set->net_payable, 2) }}
+                            ₹{{ number_format($set->net_payable, 2) }}
                         </td>
                         <td class="px-6 py-4">
                             <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-bold uppercase {{ $set->status === 'paid' ? 'bg-emerald-100 text-emerald-800' : 'bg-amber-100 text-amber-800' }}">
@@ -93,6 +93,12 @@
                 </tbody>
             </table>
         </div>
+
+        @if($settlements->hasPages())
+        <div class="p-4 border-t border-slate-200">
+            {{ $settlements->links() }}
+        </div>
+        @endif
     </div>
 
     <!-- Mark Paid Modal -->
