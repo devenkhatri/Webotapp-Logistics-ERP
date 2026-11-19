@@ -14,9 +14,6 @@ services:
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
-    env_file:
-      - path: .env
-        required: false
     environment:
       - WAIT_FOR_DB=true
     depends_on:
@@ -91,9 +88,6 @@ services:
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
-    env_file:
-      - path: .env
-        required: false
     command: php artisan queue:work --sleep=3 --tries=3 --timeout=90
     depends_on:
       app:
@@ -118,9 +112,6 @@ services:
     working_dir: /var/www/html
     volumes:
       - .:/var/www/html
-    env_file:
-      - path: .env
-        required: false
     command: php artisan schedule:work
     depends_on:
       app:

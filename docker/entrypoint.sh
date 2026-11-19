@@ -8,6 +8,13 @@ mkdir -p /var/www/html/storage/framework/cache/data \
          /var/www/html/storage/logs \
          /var/www/html/bootstrap/cache
 
+# Load .env file into environment if present
+if [ -f /var/www/html/.env ]; then
+    set -a
+    . /var/www/html/.env
+    set +a
+fi
+
 # Adjust directory permissions when running as root
 if [ "$(id -u)" = '0' ]; then
     chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
