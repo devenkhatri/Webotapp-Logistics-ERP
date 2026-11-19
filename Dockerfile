@@ -1,9 +1,9 @@
-# Multi-stage Dockerfile for Webotapp Logistics ERP (Laravel 12 / PHP 8.3 / Vite)
+# Multi-stage Dockerfile for Webotapp Logistics ERP (Laravel 12 / PHP 8.4 / Vite)
 
 # ==============================================================
 # Stage 1: Base Runtime Image (PHP-FPM + CLI + Extensions + Node)
 # ==============================================================
-FROM php:8.3-fpm-alpine AS base
+FROM php:8.4-fpm-alpine AS base
 
 # Configurable user/group IDs to match host permissions during development
 ARG UID=1000

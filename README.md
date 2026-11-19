@@ -42,7 +42,7 @@
 
 ## 🐳 Docker Quick Start (Recommended)
 
-Run the entire stack (Nginx, PHP 8.3 FPM, MySQL 8, Redis, Queue Worker, and Task Scheduler) using Docker and Docker Compose.
+Run the entire stack (Nginx, PHP 8.4 FPM, MySQL 8, Redis, Queue Worker, and Task Scheduler) using Docker and Docker Compose.
 
 ### Prerequisites
 - [Docker](https://docs.docker.com/get-docker/) (v24.0+)
